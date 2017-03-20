@@ -31,14 +31,14 @@ var all_cars = {
                 "name": "Цвет кузова", // Название категории
                 "stock": "white", // Если этот параметр задан, то будет установлен по умолчанию при старте
                 "items": { // Списко элементом категории - Итемы!
-                    "blue": {"name": "Синий", "color": "blue"},  // Color = обязательный параметр, именно он складывается с тонировкой
-                    "white": {"name": "Белый", "color": "white"},
-                    "black": {"name": "Чёрный", "color": "black"},
-                    "whitesmoke": {"name": "Гр.белый", "color": "whitesmoke"},
-                    "gray": {"name": "Серый", "color": "gray"},
-                    "green": {"name": "Зелёный", "color": "green"},
-                    "yellow": {"name": "Жёлтый", "color": "yellow"},
-                    "red": {"name": "Красный", "color": "red"},
+                    "blue": {"html_color": "blue", "name": "Синий", "color": "blue"},  // Color = обязательный параметр, именно он складывается с тонировкой
+                    "white": {"html_color": "white", "name": "Белый", "color": "white"},  // html_color - цвет для отрисовки в меню выбора цвета кузова
+                    "black": {"html_color": "black", "name": "Чёрный", "color": "black"},
+                    "whitesmoke": {"html_color": "whitesmoke", "name": "Гр.белый", "color": "whitesmoke"},
+                    "gray": {"html_color": "gray", "name": "Серый", "color": "gray"},
+                    "green": {"html_color": "green", "name": "Зелёный", "color": "green"},
+                    "yellow": {"html_color": "yellow", "name": "Жёлтый", "color": "yellow"},
+                    "red": {"html_color": "red", "name": "Красный", "color": "red"},
                 }
             },
             "toning": {  // Категория типа тонировки. Здесь нет картинок, так как цвет кузова_тонировка => картинка

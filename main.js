@@ -100,7 +100,8 @@ var ConstructorCar = (function () {
 
         if (options.need_redraw) {
             this.redraw($("#constructor-view"));
-            this.redraw_current_category(category);
+            if (category != "body_color")
+                this.redraw_current_category(category);
         }
     };
 
@@ -238,10 +239,6 @@ var ConstructorCar = (function () {
         for (var i = 0; i < all_items.length; i++)
             if (this.can_body_color(all_items[i][0], all_items[i][1]))
                 this.set_body_color(all_items[i][0], all_items[i][1], false);
-
-        this.redraw($("#constructor-view"));
-        this.redraw_current_category("body_color");
-
     };
 
     return ConstructorCar;
@@ -292,9 +289,20 @@ function init_constructor_for_body(car_body) {
     jq_category_list.empty();
 
     for (var key in car_setting)
-        if (car_setting.hasOwnProperty(key) && car_setting[key] && car_setting[key].items) {
+        if (key != "body_color" && car_setting.hasOwnProperty(key) && car_setting[key] && car_setting[key].items) {
             var category = car_setting[key];
             jq_category_list.append("<div class='elem' data-car_category_name='" + key + "' onclick='clickCategoryChoice(event, this)'>" + category.name + "</div>");
+        }
+
+    // Обновление body_color Делаем отдельно. Обработка кликов на них тоже
+    var jq_body_colors = $("#constructor-body-color");
+    jq_body_colors.empty();
+    for (var key_body_color in car_setting.body_color.items)
+        if (car_setting.body_color.items.hasOwnProperty(key_body_color)) {
+            var color_rec = car_setting.body_color.items[key_body_color];
+            var activated = main_car.body_color == color_rec ? ' activated' : "";
+            jq_body_colors.append("<div class='elem" + activated + "' style='background-color: " + color_rec.html_color + "'" +
+                " data-category='body_color' data-item_key='" + key_body_color + "' onclick='clickBodyColorChoice(event, this)'></div>");
         }
 
     jq_category_list.find(".elem")[0].click();
@@ -321,7 +329,29 @@ function clickCategoryChoice(event, elem) {
         }
 
     main_car.redraw_current_category(car_category);
+}
 
+function clickBodyColorChoice(event, elem) {
+    var old_state = $(elem).hasClass("activated");
+    var item_key = $(elem).data("item_key");
+    var category = $(elem).data("category");
+
+    if (!old_state) {
+        main_car.set_item({category: category, item_key: item_key, action: true, need_redraw: true});
+    }
+    else {
+        main_car.set_item({category: category, item_key: item_key, action: false, need_redraw: true});
+    }
+
+    // Показать какой из цветов выбран
+    var jq_body_colors = $("#constructor-body-color");
+    jq_body_colors.find('.elem').removeClass("activated");
+    $(elem).addClass("activated");
+
+    // Обновить текущую выбранную категорию
+    var car_category_name = $("#constructor-category-list").find(".elem.activated").first().data("car_category_name");
+    if (car_category_name)
+        main_car.redraw_current_category(car_category_name);
 }
 
 function init_color_for_item(category, item_key) {
@@ -370,6 +400,7 @@ function clickItemChoice(event, elem) {
 
     main_car.redraw_current_category(category);
 }
+
 
 function clickColorItemChoice(event, elem) {
     var old_state = $(elem).hasClass("activated");
