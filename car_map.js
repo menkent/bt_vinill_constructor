@@ -1,7 +1,7 @@
 var all_cars = {
-    "RS_A5": {
-        toning_body_map: {
-            "blue_1": {"img": "images/RS_A5/202_body_tonir/20201.png", "z": 3},
+    "RS_A5": {  // Это все-все настройки одной машинки
+        toning_body_map: { // Здесь идут связки цвета кузова и тонировки! важно совпадение ключей через подчёркивание
+            "blue_1": {"img": "images/RS_A5/202_body_tonir/20201.png", "z": 3}, // z - z-index при отрисовке конкретной картинки
             "blue_2": {"img": "images/RS_A5/202_body_tonir/20202.png", "z": 3},
             "blue_3": {"img": "images//RS_A5/202_body_tonir/20203.png", "z": 3},
             "white_1": {"img": "images/RS_A5/202_body_tonir/20211.png", "z": 3},
@@ -26,12 +26,12 @@ var all_cars = {
             "red_2": {"img": "images/RS_A5/202_body_tonir/20272.png", "z": 3},
             "red_3": {"img": "images/RS_A5/202_body_tonir/20273.png", "z": 3},
         },
-        categories: {
-            "body_color": {
-                "name": "Цвет кузова",
-                "stock": "white",
-                "items": {
-                    "blue": {"name": "Синий", "color": "blue"},
+        categories: { // Категории. Одна категория = одна картинка.
+            "body_color": {  // Категория цвета кузова. Здесь нет картинок, так как цвет кузова_тонировка => картинка
+                "name": "Цвет кузова", // Название категории
+                "stock": "white", // Если этот параметр задан, то будет установлен по умолчанию при старте
+                "items": { // Списко элементом категории - Итемы!
+                    "blue": {"name": "Синий", "color": "blue"},  // Color = обязательный параметр, именно он складывается с тонировкой
                     "white": {"name": "Белый", "color": "white"},
                     "black": {"name": "Чёрный", "color": "black"},
                     "whitesmoke": {"name": "Гр.белый", "color": "whitesmoke"},
@@ -41,9 +41,9 @@ var all_cars = {
                     "red": {"name": "Красный", "color": "red"},
                 }
             },
-            "toning": {
+            "toning": {  // Категория типа тонировки. Здесь нет картинок, так как цвет кузова_тонировка => картинка
                 "name": "Тонировка",
-                "stock": "1",
+                "stock": "1",  // По-умолчанию нет тонировки
                 "items": {
                     "1": {"name": "Тонировка 1", "type": 1},  // Отсутствие тонировки
                     "2": {"name": "Тонировка 2", "type": 2},
@@ -51,22 +51,21 @@ var all_cars = {
                 }
             },
 
-            "shadow": {
+            "shadow": {  // Категория тени под машинкой
                 "name": "Тень",
-                "stock": null,
+                "stock": null, // Если сток не указан, значит по умолчанию не будет никакой картинки
                 "items": {
-                    "200": {"name": "Тень", "img": "images/RS_A5/200_shadow/200.png", "z": 1}
+                    "200": {"name": "Тень", "img": "images/RS_A5/200_shadow/200.png", "z": 1}  // z-index при отрисовке конкретной картинки
                 }
             },
-            "wheels": {
-                "with_color": true,
+            "wheels": {  // Категория колёс
+                "with_color": true, // Значит есть третья строка выбора цвета (не в прямом смысле цвета колеса, а возможно варианта окраски)
                 "name": "Колёса",
                 "stock": "20100",
                 "items": {
-                    "20100": { // По умолчанию будет браться 0 элемент в списке цветов
+                    "20100": {
                         "name": "wheel 1",
-                        "def_color": "color1",
-                        "can_body_color": true,
+                        "def_color": "color1",  // Этот параметр говорит о типе (цвете) колеса по-умолчанию
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20100.png", "z": 2},
                         }
@@ -74,7 +73,6 @@ var all_cars = {
                     "20101": {
                         "name": "wheel 2",
                         "def_color": "color1",
-                        "need_body_color": true,
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20101.png", "z": 2},
                             "color2": {"img": "images/RS_A5/201_wheels/20102.png", "z": 2},
@@ -143,12 +141,12 @@ var all_cars = {
                 "items": {
                     "204": {
                         "name": "Тип 1",
-                        "def_color": "color1",
-                        "need_body_color": true,
-                        "html_type": "palette",
+                        "def_color": "color1",   // Этот параметр говорит о типе (цвете) порога по-умолчанию
+                        "need_body_color": true,  // Этот параметр говорит, что при выборе данного Итема, сначала будет искаться цвет в цвет кузова
+                        "html_type": "palette", // Значит отображение третьего ряда будет в виде палитры, используя html_color поле
                         "colors": {
-                            "color1": {"html_color": "blue", "img": "images/RS_A5/204_rapids/20401.png", "z": 4, "body_color": "blue"},
-                            "color2": {"html_color": "white", "img": "images/RS_A5/204_rapids/20411.png", "z": 4, "body_color": "white"},
+                            "color1": {"html_color": "blue", "img": "images/RS_A5/204_rapids/20401.png", "z": 4, "body_color": "blue"}, // html_color - каким цветом будет нарисован квадратик в палитре - можно юзать через #XXXXXX или rgb()
+                            "color2": {"html_color": "white", "img": "images/RS_A5/204_rapids/20411.png", "z": 4, "body_color": "white"}, // body_color - какой ключ будет взят из вариантов выбора цвета кузова при нажатии на "в цвет кузова"
                             "color3": {"html_color": "black", "img": "images/RS_A5/204_rapids/20421.png", "z": 4, "body_color": "black"},
                             "color4": {"html_color": "whitesmoke", "img": "images/RS_A5/204_rapids/20431.png", "z": 4, "body_color": "whitesmoke"},
                             "color5": {"html_color": "gray", "img": "images/RS_A5/204_rapids/20441.png", "z": 4, "body_color": "gray"},
@@ -225,13 +223,77 @@ var all_cars = {
                 },
             },
 
+            "back_mirrors": {  // Категория зеркал заднего вида
+                "name": "Зеркала",
+                "stock": null,
+                "items": {
+                    "20621": {"name": "Зеркало1", "img": "images/RS_A5/206_back_mirrors/20621.png", "z": 6},
+                    "20622": {"name": "Зеркало2", "img": "images/RS_A5/206_back_mirrors/20622.png", "z": 6}
+                }
+            },
 
-            "back_mirrors": null,
+            "strut": {  // Категория стоек
+                "name": "Стойка",
+                "stock": null,
+                "items": {
+                    "20821": {"name": "Затонировать", "img": "images/RS_A5/208_strut/20821.png", "z": 8},
+                }
+            },
 
-            "strut": null,
-            "visor": null,
-            "roof": null,
-            "eyelashes": null
+            "visor": {
+                "name": "Козырек",
+                "stock": null,
+                "with_color": true,
+                "items": {
+                    "ttt1": {
+                        "name": "Тип 1",
+                        "def_color": "color1",
+                        "need_body_color": true,
+                        "html_type": "palette",
+                        "colors": {
+                            "20901": {"html_color": "blue", "img": "images/RS_A5/209_visor/20901.png", "z": 9, "body_color": "blue"},
+                            "20911": {"html_color": "white", "img": "images/RS_A5/209_visor/20911.png", "z": 9, "body_color": "white"},
+                            "20921": {"html_color": "black", "img": "images/RS_A5/209_visor/20921.png", "z": 9, "body_color": "black"},
+                            "20931": {"html_color": "whitesmoke", "img": "images/RS_A5/209_visor/20931.png", "z": 9, "body_color": "whitesmoke"},
+                            "20941": {"html_color": "gray", "img": "images/RS_A5/209_visor/20941.png", "z": 9, "body_color": "gray"},
+                            "20951": {"html_color": "green", "img": "images/RS_A5/209_visor/20951.png", "z": 9, "body_color": "green"},
+                            "20961": {"html_color": "yellow", "img": "images/RS_A5/209_visor/20961.png", "z": 9, "body_color": "yellow"},
+                            "20971": {"html_color": "red", "img": "images/RS_A5/209_visor/20971.png", "z": 9, "body_color": "red"},
+                        },
+                    }
+                }
+            },
+
+            "roof": {
+                "name": "Крыша",
+                "stock": null,
+                "items": {
+                    "21021": {"name": "Крыша", "img": "images/RS_A5/210_roof/21021.png", "z": 10},
+                }
+            },
+            "eyelashes": {
+                "name": "Реснички",
+                "stock": null,
+                "with_color": true,
+                "items": {
+                    "ttt1": {
+                        "name": "Тип 1",
+                        "def_color": "color1",
+                        "need_body_color": true,
+                        "html_type": "palette",
+                        "colors": {
+                            "21101": {"html_color": "blue", "img": "images/RS_A5/211_eyelashes/21101.png", "z": 11, "body_color": "blue"},
+                            "21111": {"html_color": "white", "img": "images/RS_A5/211_eyelashes/21111.png", "z": 11, "body_color": "white"},
+                            "21121": {"html_color": "black", "img": "images/RS_A5/211_eyelashes/21121.png", "z": 11, "body_color": "black"},
+                            "21131": {"html_color": "whitesmoke", "img": "images/RS_A5/211_eyelashes/21131.png", "z": 11, "body_color": "whitesmoke"},
+                            "21141": {"html_color": "gray", "img": "images/RS_A5/211_eyelashes/21141.png", "z": 11, "body_color": "gray"},
+                            "21151": {"html_color": "green", "img": "images/RS_A5/211_eyelashes/21151.png", "z": 11, "body_color": "green"},
+                            "21161": {"html_color": "yellow", "img": "images/RS_A5/211_eyelashes/21161.png", "z": 11, "body_color": "yellow"},
+                            "21171": {"html_color": "red", "img": "images/RS_A5/211_eyelashes/21171.png", "z": 11, "body_color": "red"},
+                        },
+                    }
+                }
+            }
         },
     },
 
