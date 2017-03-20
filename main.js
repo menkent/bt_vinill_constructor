@@ -84,8 +84,13 @@ var ConstructorCar = (function () {
         //if (this[category] && this.settings[category].with_color && !this[category].colors[this[category + "_color"]])
         //    this[category + "_color"] = this[category].def_color;
         // Здесь всегда при выборе итема будем выбирать дефолтный цвет - более адекватное поведение
-        if (this[category] && this.settings[category].with_color)
-            this[category + "_color"] = this[category].def_color;
+        if (this[category] && this.settings[category].with_color) {
+            var set_success = false;
+            if (this.settings[category].items[item_key]["need_body_color"])
+                set_success = this.set_body_color(category, item_key);
+            if (!set_success)
+                this[category + "_color"] = this[category].def_color;
+        }
 
         this.redraw($("#constructor-view"));
         this.redraw_current_category(category);
@@ -103,6 +108,7 @@ var ConstructorCar = (function () {
 
         this.redraw($("#constructor-view"));
         this.redraw_current_category(category);
+        return true;
     };
 
     ConstructorCar.prototype.redraw = function(jq_elem) {
@@ -187,7 +193,8 @@ var ConstructorCar = (function () {
     ConstructorCar.prototype.set_body_color = function (category, item_key) {
         var color_key = this.can_body_color(category, item_key);
         if (color_key)
-            this.set_item_color(category, item_key, color_key, true)
+            return this.set_item_color(category, item_key, color_key, true);
+        return false
     };
 
     ConstructorCar.prototype.can_body_color = function (category, item_key) {
