@@ -142,6 +142,8 @@ body {background-color: ghostwhite; }
     font-weight: bold;
 }
 
+#constructor-category-color .elem.palette {width: 40px;}
+
 
 
 #constructor-category-color .to-body-color {

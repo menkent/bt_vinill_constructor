@@ -44,6 +44,7 @@ var ConstructorCar = (function () {
 
         this.standart_elems_names = ["body"];
         this.colors_elems_names = [];
+        this.in_body_color_elems = {}; // Здесь хранятся пары category / item_key для которых работает функция "в цвет кузова" category_item_key = [category, item_key]
 
         var categories_list = ["body", "shadow", "back_mirror", "radiator", "strut", "visor", "roof", "eyelashes", "wheels", "rapids", "splitter"];
         for (var i = 0; i < categories_list.length; i++)
@@ -68,7 +69,11 @@ var ConstructorCar = (function () {
             }
     };
 
-    ConstructorCar.prototype.set_item = function(category, item_key, action) {
+    ConstructorCar.prototype.set_item = function(options) {
+        var category = options.category;
+        var item_key = options.item_key;
+        var action = options.action;
+
         if (!action) {
             // Если нужно итем снять
             this[category] = null;
@@ -80,23 +85,31 @@ var ConstructorCar = (function () {
             // Если нужно заменить или установить итем
             this[category] = this.settings[category].items[item_key];
         }
-        // Здесь меняется цвет, только если такого цвета нет.
-        //if (this[category] && this.settings[category].with_color && !this[category].colors[this[category + "_color"]])
-        //    this[category + "_color"] = this[category].def_color;
         // Здесь всегда при выборе итема будем выбирать дефолтный цвет - более адекватное поведение
         if (this[category] && this.settings[category].with_color) {
             var set_success = false;
             if (this.settings[category].items[item_key]["need_body_color"])
                 set_success = this.set_body_color(category, item_key);
             if (!set_success)
-                this[category + "_color"] = this[category].def_color;
+                this.set_item_color({category: category, item_key: item_key, item_color: this[category].def_color, action: true, need_redraw: false});
+                // this[category + "_color"] = this[category].def_color;
         }
 
-        this.redraw($("#constructor-view"));
-        this.redraw_current_category(category);
+        if (category == "body_color") // Значит нужно обновить все детали "в цвет кузова"
+           this.refresh_in_body_color();
+
+        if (options.need_redraw) {
+            this.redraw($("#constructor-view"));
+            this.redraw_current_category(category);
+        }
     };
 
-    ConstructorCar.prototype.set_item_color = function(category, item_key, item_color, action) {
+    ConstructorCar.prototype.set_item_color = function(options) {
+        var category = options.category,
+            item_key = options.item_key,
+            item_color = options.item_color,
+            action = options.action,
+            from_body_color = options.from_body_color;
         if (!action) {
             // Если нужно итем снять
             this[category + "_color"] = this[category].def_color;
@@ -106,8 +119,17 @@ var ConstructorCar = (function () {
             this[category + "_color"] = this[category].colors[item_color] ? item_color : this[category].def_color;
         }
 
-        this.redraw($("#constructor-view"));
-        this.redraw_current_category(category);
+        if (from_body_color)
+            this.in_body_color_elems[category + "_" + item_key] = [category, item_key];
+        else {
+            //console.log("change color", this.in_body_color_elems, category, item_key);
+            if (this.in_body_color_elems.hasOwnProperty(category + "_" + item_key))
+                delete this.in_body_color_elems[category + "_" + item_key];
+        }
+        if (options.need_redraw) {
+            this.redraw($("#constructor-view"));
+            this.redraw_current_category(category);
+        }
         return true;
     };
 
@@ -190,20 +212,36 @@ var ConstructorCar = (function () {
 
     };
 
-    ConstructorCar.prototype.set_body_color = function (category, item_key) {
+    ConstructorCar.prototype.set_body_color = function (category, item_key, need_redraw) {
         var color_key = this.can_body_color(category, item_key);
-        if (color_key)
-            return this.set_item_color(category, item_key, color_key, true);
+        if (color_key) {
+            this.set_item_color({category: category, item_key: item_key, item_color: color_key, action: true, from_body_color: true, need_redraw: need_redraw});
+            return true;
+        }
         return false
     };
 
     ConstructorCar.prototype.can_body_color = function (category, item_key) {
-        var b_c =  this.body_color.color;
+        var b_c = this.body_color.color;
         var settings = this.settings[category].items[item_key];
         for (var color_key in settings.colors)
             if (settings.colors.hasOwnProperty(color_key) && settings.colors[color_key].hasOwnProperty("body_color") && settings.colors[color_key].body_color == b_c)
                 return color_key;
         return false;
+    };
+
+    ConstructorCar.prototype.refresh_in_body_color = function () {
+        var all_items = [];
+        for (var key in this.in_body_color_elems)
+            all_items.push(this.in_body_color_elems[key]);
+
+        for (var i = 0; i < all_items.length; i++)
+            if (this.can_body_color(all_items[i][0], all_items[i][1]))
+                this.set_body_color(all_items[i][0], all_items[i][1], false);
+
+        this.redraw($("#constructor-view"));
+        this.redraw_current_category("body_color");
+
     };
 
     return ConstructorCar;
@@ -301,7 +339,14 @@ function init_color_for_item(category, item_key) {
 
         // Отрисовка всех видов-цветов
         for (var key_color in main_car.settings[category].items[item_key].colors) {
-            jq_colors.append("<div class='elem' data-category='" + category + "' data-item_key='" + item_key + "'  data-key_color='" + key_color + "' onclick='clickColorItemChoice(event, this)'>" + key_color + "</div>");
+            switch (main_car.settings[category].items[item_key].html_type) {
+                case "palette":
+                    jq_colors.append("<div class='elem palette' style='background-color: " + main_car.settings[category].items[item_key].colors[key_color].html_color + "'" +
+                        "data-category='" + category + "' data-item_key='" + item_key + "'  data-key_color='" + key_color + "' onclick='clickColorItemChoice(event, this)'></div>");
+                    break;
+                default:
+                    jq_colors.append("<div class='elem' data-category='" + category + "' data-item_key='" + item_key + "'  data-key_color='" + key_color + "' onclick='clickColorItemChoice(event, this)'>" + key_color + "</div>");
+            }
         }
     }
     else {
@@ -317,10 +362,10 @@ function clickItemChoice(event, elem) {
     var category = $(elem).data("category");
 
     if (!old_state) {
-        main_car.set_item(category, item_key, true);
+        main_car.set_item({category: category, item_key: item_key, action: true, need_redraw: true});
     }
     else {
-        main_car.set_item(category, item_key, false);
+        main_car.set_item({category: category, item_key: item_key, action: false, need_redraw: true});
     }
 
     main_car.redraw_current_category(category);
@@ -333,10 +378,10 @@ function clickColorItemChoice(event, elem) {
     var key_color = $(elem).data("key_color");
 
     if (!old_state) {
-        main_car.set_item_color(category, item_key, key_color, true);
+        main_car.set_item_color({category: category, item_key: item_key, item_color: key_color, action: true, need_redraw: true});
     }
     else {
-        main_car.set_item_color(category, item_key, key_color, false);
+        main_car.set_item_color({category: category, item_key: item_key, item_color: key_color, action: false, need_redraw: true});
     }
 }
 
@@ -345,7 +390,7 @@ function clickToBodyColor(event, elem) {
     var item_key = $(elem).data("item_key");
     var category = $(elem).data("category");
     // Нужно взять текущий body_color и кликнуть на него в списке досупных
-    main_car.set_body_color(category, item_key);
+    main_car.set_body_color(category, item_key, true);
 }
 
 
