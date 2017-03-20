@@ -141,3 +141,23 @@ body {background-color: ghostwhite; }
     border: 1px solid red;
     font-weight: bold;
 }
+
+
+
+#constructor-category-color .to-body-color {
+    position: relative;
+    float: left;
+    width: 80px;
+    height: 40px;
+    margin: 2px 5px;
+    box-sizing: border-box;
+    border: 1px solid #ffc8c3;
+    text-align: center;
+    line-height: 38px;
+    overflow: hidden;
+}
+
+#constructor-category-color .to-body-color:active {
+    border: 1px solid red;
+    font-weight: bold;
+}

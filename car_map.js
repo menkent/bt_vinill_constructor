@@ -1,9 +1,9 @@
 var all_cars = {
     "RS_A5": {
         toning_body_map: {
-            "blue_1": {"img": "images/images/RS_A5/202_body_tonir/20201.png", "z": 3},
-            "blue_2": {"img": "images/images/RS_A5/202_body_tonir/20202.png", "z": 3},
-            "blue_3": {"img": "images/images/RS_A5/202_body_tonir/20203.png", "z": 3},
+            "blue_1": {"img": "images/RS_A5/202_body_tonir/20201.png", "z": 3},
+            "blue_2": {"img": "images/RS_A5/202_body_tonir/20202.png", "z": 3},
+            "blue_3": {"img": "images//RS_A5/202_body_tonir/20203.png", "z": 3},
             "white_1": {"img": "images/RS_A5/202_body_tonir/20211.png", "z": 3},
             "white_2": {"img": "images/RS_A5/202_body_tonir/20212.png", "z": 3},
             "white_3": {"img": "images/RS_A5/202_body_tonir/20213.png", "z": 3},
@@ -34,8 +34,8 @@ var all_cars = {
                     "blue": {"name": "Синий", "color": "blue"},
                     "white": {"name": "Белый", "color": "white"},
                     "black": {"name": "Чёрный", "color": "black"},
-                    "black2": {"name": "Чёрный2", "color": "black2"},
                     "gray": {"name": "Серый", "color": "gray"},
+                    "black2": {"name": "Чёрный2", "color": "black2"},
                     "green": {"name": "Зелёный", "color": "green"},
                     "orange": {"name": "Оранжевый", "color": "orange"},
                     "red": {"name": "Красный", "color": "red"},
@@ -66,6 +66,7 @@ var all_cars = {
                     "20100": { // По умолчанию будет браться 0 элемент в списке цветов
                         "name": "wheel 1",
                         "def_color": "color1",
+                        "can_body_color": true,
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20100.png", "z": 2},
                         }
@@ -73,6 +74,7 @@ var all_cars = {
                     "20101": {
                         "name": "wheel 2",
                         "def_color": "color1",
+                        "need_body_color": true,
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20101.png", "z": 2},
                             "color2": {"img": "images/RS_A5/201_wheels/20102.png", "z": 2},
@@ -142,15 +144,16 @@ var all_cars = {
                     "204": {
                         "name": "Тип 1",
                         "def_color": "color1",
+                        "need_body_color": true,
                         "colors": {
-                            "color1": {"img": "images/RS_A5/204_rapids/20401.png", "z": 4},
-                            "color2": {"img": "images/RS_A5/204_rapids/20411.png", "z": 4},
-                            "color3": {"img": "images/RS_A5/204_rapids/20421.png", "z": 4},
-                            "color4": {"img": "images/RS_A5/204_rapids/20431.png", "z": 4},
-                            "color5": {"img": "images/RS_A5/204_rapids/20441.png", "z": 4},
-                            "color6": {"img": "images/RS_A5/204_rapids/20451.png", "z": 4},
-                            "color7": {"img": "images/RS_A5/204_rapids/20461.png", "z": 4},
-                            "color8": {"img": "images/RS_A5/204_rapids/20471.png", "z": 4},
+                            "color1": {"img": "images/RS_A5/204_rapids/20401.png", "z": 4, "body_color": "blue"},
+                            "color2": {"img": "images/RS_A5/204_rapids/20411.png", "z": 4, "body_color": "white"},
+                            "color3": {"img": "images/RS_A5/204_rapids/20421.png", "z": 4, "body_color": "black"},
+                            "color4": {"img": "images/RS_A5/204_rapids/20431.png", "z": 4, "body_color": "gray"},
+                            "color5": {"img": "images/RS_A5/204_rapids/20441.png", "z": 4, "body_color": "black2"},
+                            "color6": {"img": "images/RS_A5/204_rapids/20451.png", "z": 4, "body_color": "green"},
+                            "color7": {"img": "images/RS_A5/204_rapids/20461.png", "z": 4, "body_color": "orange"},
+                            "color8": {"img": "images/RS_A5/204_rapids/20471.png", "z": 4, "body_color": "red"},
                         }
                     },
                 },
