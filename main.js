@@ -206,6 +206,12 @@ var ConstructorCar = (function () {
             for (var i = 0; i < jq_all_colors.length; i++)
                 if ($(jq_all_colors[i]).data("key_color") == curr_color)
                     $(jq_all_colors[i]).addClass("activated");
+
+            // Если данный итем выбран как "в цвет кузова"
+            if (this.in_body_color_elems.hasOwnProperty(category_name + "_" + curr_key))
+                jq_colors.find(".to-body-color").addClass("activated");
+            else
+                jq_colors.find(".to-body-color").removeClass("activated");
         }
         else {
             jq_colors.css("display", "none");

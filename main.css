@@ -193,7 +193,7 @@ body {background-color: ghostwhite; }
     overflow: hidden;
 }
 
-#constructor-category-color .to-body-color:active {
+#constructor-category-color .to-body-color:active, #constructor-category-color .to-body-color.activated {
     border: 1px solid red;
     font-weight: bold;
 }
