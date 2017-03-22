@@ -11,15 +11,16 @@ $(document).ready(function () {
             if (new_car) {
                 main_car = new_car;
                 main_car.redraw($("#constructor-view"));
-                // todo: подсветить имя новой машинки в списке машинок
-                //var car_body = $(elem).data("car_body");
-                //// Отключаем выделение всех машинок и включаем нужную. Затем готовим конструктор
-                //var jq_car_types = $("#constructor-ch-car");
-                //jq_car_types.find(".elem").removeClass("activated");
-                //$(elem).addClass("activated");
+                main_car.redraw_header();
             }
         }
     }
+
+
+    // Инициализация кликов
+    $("#constructor-arrow-left").click(function(){switchCar(false);});
+    $("#constructor-arrow-right").click(function(){switchCar(true);});
+
 });
 
 function object_fields_to_list(obj) {
@@ -328,48 +329,33 @@ var ConstructorCar = (function () {
         return car;
     };
 
+    ConstructorCar.prototype.redraw_header = function () {
+        var jq_car_types = $("#constructor-ch-car");
+        jq_car_types.empty();
+        jq_car_types.text(this.body_name);
+    };
+
     return ConstructorCar;
 })();
 
 
 
 // Отрисовка списка доступных машинок (делается 1 раз)
-function init_body_cars(name) {    
+function init_body_cars() {
     var index = 0;
     var car_types = [];
     for(var key in all_cars)
         if (all_cars.hasOwnProperty(key))
             car_types.push(key);
 
-    // Очищаем список вариантов машин и загружаем новый
-    var jq_car_types = $("#constructor-ch-car").empty();
-    for (var i = 0; i < car_types.length ;i++) {
-        jq_car_types.append("<div class='elem' data-car_body='" + car_types[i] + "' onclick='clickCarChoice(event, this)'>"
-            + car_types[i] + "</div>");
-        if (name && name == car_types[i]) index = i;
-    }
-
-    // Автоматически выбираем машинку
-    jq_car_types.find(".elem")[index].click();
-}
-
-// Обработка клика на машинку
-function clickCarChoice(event, elem) {
-    //console.log("clickBodyChoice", event, elem);
-    var car_body = $(elem).data("car_body");
-
-    // Отключаем выделение всех машинок и включаем нужную. Затем готовим конструктор
-    var jq_car_types = $("#constructor-ch-car");
-    jq_car_types.find(".elem").removeClass("activated");
-    $(elem).addClass("activated");
-
-    main_car = new ConstructorCar(car_body);
-    init_constructor_for_body(car_body);
+    main_car = new ConstructorCar(car_types[0]);
+    init_constructor_for_body();
     main_car.redraw($("#constructor-view"));
+    main_car.redraw_header();
 }
 
 // Отрисовка всех категорий-настроек машинки
-function init_constructor_for_body(car_body) {
+function init_constructor_for_body() {
     //console.log("init_constructor_for_body", car_body);
     var car_setting = main_car.settings;
     // Пройти по всем настройкам машинки и установить все категории
@@ -531,6 +517,24 @@ function clickToBodyColor(event, elem) {
 }
 
 
+function switchCar(next) {
+    var ll = [];
+    var current_index = null;
+    for (var key in all_cars) ll.push(key);
+    current_index = ll.indexOf(main_car.body_name);
+    if (current_index < 0 || current_index >= ll.length) current_index = 0;
 
+    if (next)
+        current_index = (current_index + 1) % ll.length;
+    else
+        if (current_index == 0)
+            current_index = ll.length - 1;
+        else
+            current_index--;
+
+    main_car = new ConstructorCar(ll[current_index]);
+    main_car.redraw($("#constructor-view"));
+    main_car.redraw_header();
+}
 
 
