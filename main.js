@@ -413,17 +413,17 @@ function clickItemChoice(event, elem) {
 
     if (!old_state) {
         main_car.set_item({category: category, item_key: item_key, action: true, need_redraw: true});
+        main_car.redraw_current_category(category);
     }
-    else {
-        main_car.set_item({category: category, item_key: item_key, action: false, need_redraw: true});
-    }
-
-    main_car.redraw_current_category(category);
+    //else {
+    //    main_car.set_item({category: category, item_key: item_key, action: false, need_redraw: true});
+    //}
 }
 
 // Обработка клика по кнопке, возвращающей текущую категорию в стоковое состояние
 function clickItemStockChoice(event, elem) {
     //console.log("clickItemStockChoice", event, elem);
+    if ($(elem).hasClass("activated")) return;
     var category = $(elem).data("category");
     var item_key = null;
     var jq_categories_items = $("#constructor-category").find(".elem");
@@ -443,9 +443,9 @@ function clickColorItemChoice(event, elem) {
     if (!old_state) {
         main_car.set_item_color({category: category, item_key: item_key, item_color: key_color, action: true, need_redraw: true});
     }
-    else {
-        main_car.set_item_color({category: category, item_key: item_key, item_color: key_color, action: false, need_redraw: true});
-    }
+    //else {
+    //    main_car.set_item_color({category: category, item_key: item_key, item_color: key_color, action: false, need_redraw: true});
+    //}
 }
 
 
