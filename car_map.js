@@ -54,6 +54,7 @@ var all_cars = {
             "shadow": {  // Категория тени под машинкой
                 "name": "Тень",
                 "stock": null, // Если сток не указан, значит по умолчанию не будет никакой картинки
+                "stock_name": "Нет", // Имя кнопки - Сток в списке итемов, указывается только когда stock = null
                 "items": {
                     "200": {"name": "Тень", "img": "images/RS_A5/200_shadow/200.png", "z": 1}  // z-index при отрисовке конкретной картинки
                 }
@@ -131,6 +132,7 @@ var all_cars = {
             "rapids": {
                 "with_color": true,
                 "stock": null,
+                "stock_name": "Сток",
                 "name": "Пороги",
                 "items": {
                     "204": {
@@ -155,6 +157,7 @@ var all_cars = {
             "radiator": {
                 "name": "Радиатор",
                 "stock": null,
+                "stock_name": "Сток",
                 "with_color": true,
                 "items": {
                     "ttt1": {
@@ -180,6 +183,7 @@ var all_cars = {
             "splitter": {
                 "with_color": true,
                 "stock": null,
+                "stock_name": "Сток",
                 "name": "Сплиттер",
                 "items": {
                     "type_1": {
@@ -220,6 +224,7 @@ var all_cars = {
             "back_mirrors": {  // Категория зеркал заднего вида
                 "name": "Зеркала",
                 "stock": null,
+                "stock_name": "Сток",
                 "items": {
                     "20621": {"name": "Зеркало1", "img": "images/RS_A5/206_back_mirrors/20621.png", "z": 6},
                     "20622": {"name": "Зеркало2", "img": "images/RS_A5/206_back_mirrors/20622.png", "z": 6}
@@ -229,6 +234,7 @@ var all_cars = {
             "strut": {  // Категория стоек
                 "name": "Стойка",
                 "stock": null,
+                "stock_name": "Сток",
                 "items": {
                     "20821": {"name": "Черная", "img": "images/RS_A5/208_strut/20821.png", "z": 8},
                 }
@@ -237,6 +243,7 @@ var all_cars = {
             "visor": {
                 "name": "Козырек",
                 "stock": null,
+                "stock_name": "Сток",
                 "with_color": true,
                 "items": {
                     "ttt1": {
@@ -261,6 +268,7 @@ var all_cars = {
             "roof": {
                 "name": "Крыша",
                 "stock": null,
+                "stock_name": "Сток",
                 "items": {
                     "21021": {"name": "Крыша", "img": "images/RS_A5/210_roof/21021.png", "z": 10},
                 }
@@ -268,6 +276,7 @@ var all_cars = {
             "eyelashes": {
                 "name": "Реснички",
                 "stock": null,
+                "stock_name": "Сток",
                 "with_color": true,
                 "items": {
                     "ttt1": {
@@ -347,6 +356,7 @@ var all_cars = {
             "shadow": {  // Категория тени под машинкой
                 "name": "Тень",
                 "stock": null, // Если сток не указан, значит по умолчанию не будет никакой картинки
+                "stock_name": "Нет",
                 "items": {
                     "100": {"name": "Тень", "img": "images/RS_A5FL/100_shadow/1001.png", "z": 1}  // z-index при отрисовке конкретной картинки
                 }
@@ -424,6 +434,7 @@ var all_cars = {
             "rapids": {
                 "with_color": true,
                 "stock": null,
+                "stock_name": "Сток",
                 "name": "Пороги",
                 "items": {
                     "type_11": {
@@ -464,6 +475,7 @@ var all_cars = {
             "radiator": {
                 "name": "Радиатор",
                 "stock": null,
+                "stock_name": "Сток",
                 "with_color": true,
                 "items": {
                     "ttt1t": {
@@ -489,6 +501,7 @@ var all_cars = {
             "splitter": {
                 "with_color": true,
                 "stock": null,
+                "stock_name": "Сток",
                 "name": "Сплиттер",
                 "items": {
                     "type_1_1": {
@@ -513,6 +526,7 @@ var all_cars = {
             "back_mirrors": {  // Категория зеркал заднего вида
                 "name": "Зеркала",
                 "stock": null,
+                "stock_name": "Сток",
                 "items": {
                     "10621": {"name": "Зеркало1", "img": "images/RS_A5FL/106_back_mirrors/10621.png", "z": 6},
                     "10622": {"name": "Зеркало2", "img": "images/RS_A5FL/106_back_mirrors/10622.png", "z": 6}
@@ -522,6 +536,7 @@ var all_cars = {
             "strut": {  // Категория стоек
                 "name": "Стойка",
                 "stock": null,
+                "stock_name": "Сток",
                 "items": {
                     "10821": {"name": "Черная", "img": "images/RS_A5FL/108_strut/10821.png", "z": 8},
                 }
@@ -530,6 +545,7 @@ var all_cars = {
             "visor": {
                 "name": "Лого",
                 "stock": null,
+                "stock_name": "Сток",
                 "items": {
                       "10901": {"name": "Новое", "img": "images/RS_A5FL/109_visor/10901.png", "z": 9},
                 }
@@ -538,6 +554,7 @@ var all_cars = {
             "roof": {
                 "name": "Крыша",
                 "stock": null,
+                "stock_name": "Сток",
                 "items": {
                     "11021": {"name": "Крыша", "img": "images/RS_A5FL/110_roof/11021.png", "z": 10},
                 }
@@ -545,6 +562,7 @@ var all_cars = {
             "eyelashes": {
                 "name": "Реснички",
                 "stock": null,
+                "stock_name": "Сток",
                 "with_color": true,
                 "items": {
                     "ttt_1": {

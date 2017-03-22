@@ -54,11 +54,11 @@ var ConstructorCar = (function () {
                 else
                     this.standart_elems_names.push(categories_list[i]);
 
-        this.set_stock();
+        this.set_stock_init();
         this.redraw($("#constructor-view"));
     }
 
-    ConstructorCar.prototype.set_stock = function () {
+    ConstructorCar.prototype.set_stock_init = function () {
         // Установка стоковых вариантов для всех частей, где они нужны
         for (var category_name in this.settings)
             if (this.settings.hasOwnProperty(category_name) && this.settings[category_name] && this.settings[category_name].stock) {
@@ -93,6 +93,11 @@ var ConstructorCar = (function () {
             if (!set_success)
                 this.set_item_color({category: category, item_key: item_key, item_color: this[category].def_color, action: true, need_redraw: false});
                 // this[category + "_color"] = this[category].def_color;
+        }
+        else {
+            // Если категория не выбрана или она без цвета, то удалить из списка "в цвет кузова"
+            if (this.in_body_color_elems.hasOwnProperty(category + "_" + item_key))
+                delete this.in_body_color_elems[category + "_" + item_key];
         }
 
         if (category == "body_color") // Значит нужно обновить все детали "в цвет кузова"
@@ -174,8 +179,13 @@ var ConstructorCar = (function () {
         var curr_key = null;
         var curr_obj = this[category_name];
         var jq_colors = $("#constructor-category-color");
+        var all_elements = $("#constructor-category").find(".elem");
+        all_elements.removeClass("activated");
         if (! curr_obj) {
-            $("#constructor-category").find(".elem").removeClass("activated");
+            all_elements.removeClass("activated");
+            // todo: сделать здесь подсветку сток-итема, если при этом сток не выбирается, то есть = null
+            //if (this.settings[category_name].stock == null)
+            $("#constructor-category").find(".elem.null-stock").addClass("activated");
             jq_colors.css("display", "none");
             return;
         }
@@ -189,8 +199,6 @@ var ConstructorCar = (function () {
             return;
         }
 
-        var all_elements = $("#constructor-category").find(".elem");
-        all_elements.removeClass("activated");
         for (var i = 0; i < all_elements.length; i++)
             if ($(all_elements[i]).data("item_key") == curr_key)
                 $(all_elements[i]).addClass("activated");
@@ -329,6 +337,12 @@ function clickCategoryChoice(event, elem) {
     jq_categories_items.empty();
     var cat_setting = main_car.settings[car_category].items;
 
+    // Отображение кнопки stock
+    if(main_car.settings[car_category].stock == null) {
+        jq_categories_items.append("<div class='elem null-stock' data-category='" + car_category + "' onclick='clickItemStockChoice(event, this)'>" + main_car.settings[car_category].stock_name + "</div>");
+    }
+
+    // Отображенеи всех итемов категории
     for (var key in cat_setting)
         if (cat_setting.hasOwnProperty(key)) {
             jq_categories_items.append("<div class='elem' data-category='" + car_category + "' data-item_key='" + key + "' onclick='clickItemChoice(event, this)'>" + cat_setting[key].name + "</div>");
@@ -405,6 +419,18 @@ function clickItemChoice(event, elem) {
     }
 
     main_car.redraw_current_category(category);
+}
+
+// Обработка клика по кнопке, возвращающей текущую категорию в стоковое состояние
+function clickItemStockChoice(event, elem) {
+    //console.log("clickItemStockChoice", event, elem);
+    var category = $(elem).data("category");
+    var item_key = null;
+    var jq_categories_items = $("#constructor-category").find(".elem");
+    for (var i = 0; i < jq_categories_items.length; i++)
+        if ($(jq_categories_items[i]).hasClass("activated"))
+            item_key = $(jq_categories_items[i]).data("item_key");
+    main_car.set_item({category: category, item_key: item_key, action: false, need_redraw: true});
 }
 
 

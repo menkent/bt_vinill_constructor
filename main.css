@@ -149,6 +149,9 @@ body {background-color: ghostwhite; }
     font-weight: bold;
 }
 
+#constructor-category .elem.null-stock {}
+
+
 #constructor-category-color {
     position: relative;
     margin: 5px auto 0 auto;
