@@ -2,7 +2,24 @@
 var main_car = null;
 
 $(document).ready(function () {
+    var hash_url = window.location.hash;
     init_body_cars();
+    if (hash_url && hash_url.length) {
+        hash_url = hash_url.split('#')[1];
+        if (hash_url.length) {
+            var new_car = main_car.load(hash_url);
+            if (new_car) {
+                main_car = new_car;
+                main_car.redraw($("#constructor-view"));
+                // todo: подсветить имя новой машинки в списке машинок
+                //var car_body = $(elem).data("car_body");
+                //// Отключаем выделение всех машинок и включаем нужную. Затем готовим конструктор
+                //var jq_car_types = $("#constructor-ch-car");
+                //jq_car_types.find(".elem").removeClass("activated");
+                //$(elem).addClass("activated");
+            }
+        }
+    }
 });
 
 function object_fields_to_list(obj) {
@@ -55,7 +72,6 @@ var ConstructorCar = (function () {
                     this.standart_elems_names.push(categories_list[i]);
 
         this.set_stock_init();
-        this.redraw($("#constructor-view"));
     }
 
     ConstructorCar.prototype.set_stock_init = function () {
@@ -172,6 +188,8 @@ var ConstructorCar = (function () {
                 }
             }
         }
+
+        window.location.hash = this.save(); // Обновление ссылки на данную машинку
     };
 
     ConstructorCar.prototype.redraw_current_category = function (category_name) {
@@ -255,6 +273,61 @@ var ConstructorCar = (function () {
                 this.set_body_color(all_items[i][0], all_items[i][1], false);
     };
 
+    ConstructorCar.prototype.save = function () {
+        var car_str = "body_name=" + this.body_name; // body_name=body_name; затем сохраняем все-все объекты и цвета объектов
+        // Тонировка и цвет кузова
+        var standart_elems_names = ["body_color", "toning"].concat(this.standart_elems_names);
+
+        for (var i = 0; i < standart_elems_names.length; i++) {
+            var category = standart_elems_names[i];
+            if (category && this[category] != null && this.settings[category])
+                for (var key in this.settings[category].items)
+                    if (this.settings[category].items[key] == this[category])
+                        car_str = car_str + ";" + category + "=" + key;  // "category=key" для стандартных категорий
+        }
+
+        for (var i = 0; i < this.colors_elems_names.length; i++) {
+            var category = this.colors_elems_names[i];
+            if (category && this[category] != null && this[category + "_color"] != null && this.settings[category])
+                for (var key in this.settings[category].items)
+                    if (this.settings[category].items[key] == this[category])
+                        car_str = car_str + ";" + category + "=" + key + ":" + this[category + "_color"];  // "category=key_color" для категорий с цветом
+        }
+
+        return car_str;
+    };
+
+    ConstructorCar.prototype.load = function (car_str) {
+        var car = null;
+        var elems = car_str.split(";");
+        if (elems.length < 2) return;
+        var body_name_arr = elems.shift().split("=");
+        if (body_name_arr[0] != "body_name" || !all_cars.hasOwnProperty(body_name_arr[1])) return;
+        car = new ConstructorCar(body_name_arr[1]);
+        for (var i = 0; i < elems.length; i++) {
+            var rec_arr = elems[i].split("=");
+            var category = rec_arr[0];
+            if (rec_arr.length == 2 && car.settings.hasOwnProperty(category)) { // Если это категория = значение
+                var rec_color = rec_arr[1].split(":");
+                if (rec_color.length == 2) { // если здесь есть цвет
+                    var item_key = rec_color[0];
+                    var color_key = rec_color[1];
+                    if (car.settings[category].items.hasOwnProperty(item_key) && car.settings[category].items[item_key].colors.hasOwnProperty(color_key)){
+                        car[category] = car.settings[category].items[item_key];
+                        car[category + "_color"] = color_key;
+                    }
+                }
+                else {
+                    var item_key = rec_arr[1];
+                    if (car.settings[category].items.hasOwnProperty(item_key)){
+                        car[category] = car.settings[category].items[item_key];
+                    }
+                }
+            }
+        }
+        return car;
+    };
+
     return ConstructorCar;
 })();
 
@@ -292,6 +365,7 @@ function clickCarChoice(event, elem) {
 
     main_car = new ConstructorCar(car_body);
     init_constructor_for_body(car_body);
+    main_car.redraw($("#constructor-view"));
 }
 
 // Отрисовка всех категорий-настроек машинки
