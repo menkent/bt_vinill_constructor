@@ -1,5 +1,8 @@
 body {background-color: ghostwhite; }
 
+/* Тестовый комиит из веба */
+.test-class-web-version {}
+
 .max-min-size {
     max-width: 1000px;
     min-width: 823px;
