@@ -4,8 +4,8 @@ body {background-color: ghostwhite; }
     max-width: 832px;
     min-width: 792px;
 }
-
 #constructor {
+all: initial;
     position: relative;
     margin: auto;
     box-sizing: border-box;
@@ -84,7 +84,7 @@ body {background-color: ghostwhite; }
     margin: 5px auto 0 auto;
     box-sizing: border-box;
     overflow: hidden;
-    border: 1px solid #2f34ff;
+    border: solid 1px rgba(224, 224, 224, 0.75);
 }
 
 #constructor-view {
@@ -141,7 +141,7 @@ body {background-color: ghostwhite; }
     margin: 2px auto 0 auto;
     box-sizing: border-box;
  /*   height: 50px;*/
-    border: 1px solid #293038;
+    border: solid 1px rgba(224, 224, 224, 0.75);
 	border-radius: 2px;
 }
 
@@ -166,7 +166,8 @@ body {background-color: ghostwhite; }
 		letter-spacing: 0.125em;
 		line-height: 2em;
 		min-width: 5em;
-		padding: 1 0.5em;
+		padding: initial;
+		padding: 1px 0.5em;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;  
@@ -213,8 +214,9 @@ body {background-color: ghostwhite; }
     margin: 2px auto 0 auto;
     box-sizing: border-box;
    /* height: 50px; */
-    border: 1px solid #2DC937;
+    border: solid 1px rgba(224, 224, 224, 0.75);
 	border-radius: 2px;
+	
 }
 
 
@@ -238,7 +240,7 @@ body {background-color: ghostwhite; }
 		letter-spacing: 0.125em;
 		line-height: 2em;
 		min-width: 5em;
-		padding: 1 0.5em;
+		padding: 1px 0.5em;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;  
@@ -265,7 +267,7 @@ body {background-color: ghostwhite; }
     margin: 2px auto 2px auto;
     box-sizing: border-box;
     height: 37px;
-    border: 1px solid #F5000D;
+    border: solid 1px rgba(224, 224, 224, 0.75);
 	border-radius: 2px;
 }
 
@@ -290,7 +292,7 @@ body {background-color: ghostwhite; }
 		letter-spacing: 0.125em;
 		line-height: 2em;
 		min-width: 5em;
-		padding: 1 0.5em;
+		padding: 1px 0.5em;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;  
@@ -309,9 +311,9 @@ body {background-color: ghostwhite; }
 		color: #ffffff;
 }
 
-#constructor-category-color .elem.palette {width: 25px; height: 25px; border-radius: 4px; min-width: 50px;}
+#constructor-category-color .elem.palette {width: 25px; height: 29px; border-radius: 4px; min-width: 50px;}
 
-#constructor-category-color .elem.palette.activated, #constructor-category-color .elem.palette:active {width: 23px; height: 23px; border: 2px solid #EF0003;}
+#constructor-category-color .elem.palette.activated, #constructor-category-color .elem.palette:active {width: 23px; height: 29px; border: 2px solid #EF0003;}
 
 
 #constructor-category-color .to-body-color {
@@ -326,7 +328,8 @@ body {background-color: ghostwhite; }
 		letter-spacing: 0.125em;
 		line-height: 2em;
 		min-width: 5em;
-		padding: 1 0.5em;
+		padding: 1px 0.5em;
+		padding: 1px 0.5em;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;  
@@ -344,4 +347,4 @@ body {background-color: ghostwhite; }
     background: #EF0003;
 		border: 1px solid #EF0003;
 		color: #ffffff;
-}
+}	

@@ -1,5 +1,5 @@
 var all_cars = {
-    "RS_A5": {  // Это все-все настройки одной машинки
+    "Octavia RS Mk2": {  // Это все-все настройки одной машинки
         toning_body_map: { // Здесь идут связки цвета кузова и тонировки! важно совпадение ключей через подчёркивание
             "blue_1": {"img": "images/RS_A5/202_body_tonir/20201.png", "z": 3}, // z - z-index при отрисовке конкретной картинки
             "blue_2": {"img": "images/RS_A5/202_body_tonir/20202.png", "z": 3},
@@ -29,7 +29,7 @@ var all_cars = {
         categories: { // Категории. Одна категория = одна картинка.
             "body_color": {  // Категория цвета кузова. Здесь нет картинок, так как цвет кузова_тонировка => картинка
                 "name": "Цвет кузова", // Название категории
-                "stock": "white", // Если этот параметр задан, то будет установлен по умолчанию при старте
+                "stock": "blue", // Если этот параметр задан, то будет установлен по умолчанию при старте
                 "items": { // Списко элементом категории - Итемы!
                     "blue": {"html_color": "blue", "name": "Синий", "color": "blue"},  // Color = обязательный параметр, именно он складывается с тонировкой
                     "white": {"html_color": "white", "name": "Белый", "color": "white"},  // html_color - цвет для отрисовки в меню выбора цвета кузова
@@ -42,7 +42,7 @@ var all_cars = {
                 }
             },
             "toning": {  // Категория типа тонировки. Здесь нет картинок, так как цвет кузова_тонировка => картинка
-                "name": "Тонер",
+                "name": "Ton",
                 "stock": "1",  // По-умолчанию нет тонировки
                 "items": {
                     "1": {"name": "Без", "type": 1},  // Отсутствие тонировки
@@ -52,7 +52,7 @@ var all_cars = {
             },
 
             "shadow": {  // Категория тени под машинкой
-                "name": "Тень",
+                "name": "Shadow",
                 "stock": null, // Если сток не указан, значит по умолчанию не будет никакой картинки
                 "stock_name": "Нет", // Имя кнопки - Сток в списке итемов, указывается только когда stock = null
                 "items": {
@@ -61,7 +61,7 @@ var all_cars = {
             },
             "wheels": {  // Категория колёс
                 "with_color": true, // Значит есть третья строка выбора цвета (не в прямом смысле цвета колеса, а возможно варианта окраски)
-                "name": "Колёса",
+                "name": "Wheels",
                 "stock": "20100",
                 "items": {
                     "20100": {
@@ -132,8 +132,8 @@ var all_cars = {
             "rapids": {
                 "with_color": true,
                 "stock": null,
-                "stock_name": "Сток",
-                "name": "Пороги",
+                "stock_name": "Stock",
+                "name": "Skirts",
                 "items": {
                     "204": {
                         "name": "Тип 1",
@@ -155,9 +155,9 @@ var all_cars = {
             },
 
             "radiator": {
-                "name": "Радиатор",
+                "name": "Frame",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "with_color": true,
                 "items": {
                     "ttt1": {
@@ -183,8 +183,8 @@ var all_cars = {
             "splitter": {
                 "with_color": true,
                 "stock": null,
-                "stock_name": "Сток",
-                "name": "Сплиттер",
+                "stock_name": "Stock",
+                "name": "Spoilers",
                 "items": {
                     "type_1": {
                         "name": "Тип 1",
@@ -222,28 +222,28 @@ var all_cars = {
             },
 
             "back_mirrors": {  // Категория зеркал заднего вида
-                "name": "Зеркала",
+                "name": "Mirrors",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
-                    "20621": {"name": "Зеркало1", "img": "images/RS_A5/206_back_mirrors/20621.png", "z": 6},
-                    "20622": {"name": "Зеркало2", "img": "images/RS_A5/206_back_mirrors/20622.png", "z": 6}
+                    "20621": {"name": "Тип 1", "img": "images/RS_A5/206_back_mirrors/20621.png", "z": 6},
+                    "20622": {"name": "Тип 2", "img": "images/RS_A5/206_back_mirrors/20622.png", "z": 6}
                 }
             },
 
             "strut": {  // Категория стоек
-                "name": "Стойка",
+                "name": "Rack",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
                     "20821": {"name": "Черная", "img": "images/RS_A5/208_strut/20821.png", "z": 8},
                 }
             },
 
             "visor": {
-                "name": "Козырек",
+                "name": "Shield",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "with_color": true,
                 "items": {
                     "ttt1": {
@@ -266,17 +266,17 @@ var all_cars = {
             },
 
             "roof": {
-                "name": "Крыша",
+                "name": "Roof",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
-                    "21021": {"name": "Крыша", "img": "images/RS_A5/210_roof/21021.png", "z": 10},
+                    "21021": {"name": "Black", "img": "images/RS_A5/210_roof/21021.png", "z": 10},
                 }
             },
             "eyelashes": {
-                "name": "Реснички",
+                "name": "Eyebrows",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "with_color": true,
                 "items": {
                     "ttt1": {
@@ -301,7 +301,7 @@ var all_cars = {
     },
 
 
-    "RS_A5FL": {
+    "Octavia RS Mk2 FL": {
         toning_body_map: {
             "blue_1": {"img": "images/RS_A5FL/102_body_tonir/10201.png", "z": 3}, // z - z-index при отрисовке конкретной картинки
             "blue_2": {"img": "images/RS_A5FL/102_body_tonir/10202.png", "z": 3},
@@ -434,7 +434,7 @@ var all_cars = {
             "rapids": {
                 "with_color": true,
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "name": "Пороги",
                 "items": {
                     "type_11": {
@@ -475,7 +475,7 @@ var all_cars = {
             "radiator": {
                 "name": "Радиатор",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "with_color": true,
                 "items": {
                     "ttt1t": {
@@ -501,7 +501,7 @@ var all_cars = {
             "splitter": {
                 "with_color": true,
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "name": "Сплиттер",
                 "items": {
                     "type_1_1": {
@@ -526,7 +526,7 @@ var all_cars = {
             "back_mirrors": {  // Категория зеркал заднего вида
                 "name": "Зеркала",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
                     "10621": {"name": "Зеркало1", "img": "images/RS_A5FL/106_back_mirrors/10621.png", "z": 6},
                     "10622": {"name": "Зеркало2", "img": "images/RS_A5FL/106_back_mirrors/10622.png", "z": 6}
@@ -536,16 +536,16 @@ var all_cars = {
             "strut": {  // Категория стоек
                 "name": "Стойка",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
                     "10821": {"name": "Черная", "img": "images/RS_A5FL/108_strut/10821.png", "z": 8},
                 }
             },
 
-            "visor": {
-                "name": "Лого",
+            "logo": {
+                "name": "Logo",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
                       "10901": {"name": "Новое", "img": "images/RS_A5FL/109_visor/10901.png", "z": 9},
                 }
@@ -554,7 +554,7 @@ var all_cars = {
             "roof": {
                 "name": "Крыша",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
                     "11021": {"name": "Крыша", "img": "images/RS_A5FL/110_roof/11021.png", "z": 10},
                 }
@@ -562,7 +562,7 @@ var all_cars = {
             "eyelashes": {
                 "name": "Реснички",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "with_color": true,
                 "items": {
                     "ttt_1": {

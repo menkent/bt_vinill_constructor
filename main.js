@@ -55,6 +55,8 @@ var ConstructorCar = (function () {
         this.visor = null; // Визор
         this.roof = null; // Крыша
         this.eyelashes = null; // Реснички
+		this.logo = null; // Лого
+		
 
 
         //this.standart_elems_names = ["body", "shadow", "back_mirror", "radiator", "strut", "visor", "roof", "eyelashes"];
@@ -64,7 +66,7 @@ var ConstructorCar = (function () {
         this.colors_elems_names = [];
         this.in_body_color_elems = {}; // Здесь хранятся пары category / item_key для которых работает функция "в цвет кузова" category_item_key = [category, item_key]
 
-        var categories_list = ["body", "shadow", "back_mirrors", "radiator", "strut", "visor", "roof", "eyelashes", "wheels", "rapids", "splitter"];
+        var categories_list = ["body", "shadow", "back_mirrors", "radiator", "strut", "visor", "roof", "eyelashes", "wheels", "rapids", "splitter", "logo"];
         for (var i = 0; i < categories_list.length; i++)
             if (this.settings[categories_list[i]])
                 if (this.settings[categories_list[i]].with_color)
