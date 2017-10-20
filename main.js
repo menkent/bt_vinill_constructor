@@ -344,7 +344,7 @@ var ConstructorCar = (function () {
                 var m = curr.split(":");
                 if (m.length === 2 && car.settings.hasOwnProperty(m[0]) &&
                     car.settings[m[0]].items.hasOwnProperty(m[1]) && car.settings[m[0]].items[m[1]].need_body_color)
-                    car.in_body_color_elems[m[1] + "_" + m[0]] = m;
+                    car.in_body_color_elems[m[0] + "_" + m[1]] = m;
             })
         }
 
