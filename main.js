@@ -369,10 +369,7 @@ var ConstructorCar = (function () {
     ConstructorCar.prototype.redraw_interface = function (aColor) {
         this.redraw_current_car_color();
         this.redraw_header();
-
-        // реклик по первой категории
-        $("#constructor-category-list").find(".elem.activated").first().click();
-
+        init_constructor_for_body();
     };
 
     return ConstructorCar;
@@ -576,6 +573,7 @@ function switchCar(next) {
     main_car = new ConstructorCar(ll[current_index]);
     main_car.redraw($("#constructor-view"));
     main_car.redraw_interface();
+
 }
 
 
