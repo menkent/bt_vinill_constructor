@@ -579,3 +579,9 @@ function switchCar(next) {
 }
 
 
+window.addEventListener("hashchange", onHashChange, false);
+
+function onHashChange() {
+    console.log("new hash is ", window.location.hash);
+    console.log("new link is ", window.location.href);
+}
