@@ -11,7 +11,7 @@ $(document).ready(function () {
             if (new_car) {
                 main_car = new_car;
                 main_car.redraw($("#constructor-view"));
-                main_car.redraw_header();
+                main_car.redraw_interface();
             }
         }
     }
@@ -92,6 +92,7 @@ var ConstructorCar = (function () {
         var category = options.category;
         var item_key = options.item_key;
         var action = options.action;
+        // console.log("ConstructorCar.prototype.set_item", category, item_key, action);
 
         if (!action) {
             // Если нужно итем снять
@@ -159,7 +160,7 @@ var ConstructorCar = (function () {
     };
 
     ConstructorCar.prototype.redraw = function(jq_elem) {
-        //console.log("ConstructorCar.prototype.redraw");
+        // console.log("ConstructorCar.prototype.redraw");
         // todo: сделать чтобы redraw смотрел на src картинок и менял только те, которые изменились
         jq_elem.empty();
 
@@ -197,13 +198,14 @@ var ConstructorCar = (function () {
 
     ConstructorCar.prototype.redraw_current_category = function (category_name) {
         // Подсветка текущего выбранного итема в текущей категории
+        // console.log("ConstructorCar.prototype.redraw_current_category", category_name);
         var curr_key = null;
         var curr_obj = this[category_name];
         var jq_colors = $("#constructor-category-color");
         var all_elements = $("#constructor-category").find(".elem");
         all_elements.removeClass("activated");
         if (! curr_obj) {
-            all_elements.removeClass("activated");
+            // all_elements.removeClass("activated");
             // todo: сделать здесь подсветку сток-итема, если при этом сток не выбирается, то есть = null
             //if (this.settings[category_name].stock == null)
             $("#constructor-category").find(".elem.null-stock").addClass("activated");
@@ -301,12 +303,12 @@ var ConstructorCar = (function () {
     };
 
     ConstructorCar.prototype.load = function (car_str) {
-        var car = null;
+        // console.log("ConstructorCar.prototype.load", car_str);
         var elems = car_str.split(";");
         if (elems.length < 2) return;
         var body_name_arr = elems.shift().split("=");
         if (body_name_arr[0] != "body_name" || !all_cars.hasOwnProperty(body_name_arr[1])) return;
-        car = new ConstructorCar(body_name_arr[1]);
+        var car = new ConstructorCar(body_name_arr[1]);
         for (var i = 0; i < elems.length; i++) {
             var rec_arr = elems[i].split("=");
             var category = rec_arr[0];
@@ -337,6 +339,24 @@ var ConstructorCar = (function () {
         jq_car_types.text(this.body_name);
     };
 
+    ConstructorCar.prototype.redraw_current_car_color = function (aColor) {
+        var color_name = aColor || this.body_color.color;
+        // console.log("ConstructorCar.prototype.redraw_current_car_color", color_name);
+        var jq_body_colors = $("#constructor-body-color");
+        var colors = jq_body_colors.find('.elem');
+        colors.removeClass("activated");
+        jq_body_colors.find('[data-item_key="' + color_name + '"]').addClass("activated");
+    };
+
+    ConstructorCar.prototype.redraw_interface = function (aColor) {
+        this.redraw_current_car_color();
+        this.redraw_header();
+
+        // реклик по первой категории
+        $("#constructor-category-list").find(".elem.activated").first().click();
+
+    };
+
     return ConstructorCar;
 })();
 
@@ -353,12 +373,12 @@ function init_body_cars() {
     main_car = new ConstructorCar(car_types[0]);
     init_constructor_for_body();
     main_car.redraw($("#constructor-view"));
-    main_car.redraw_header();
+    main_car.redraw_interface();
 }
 
 // Отрисовка всех категорий-настроек машинки
 function init_constructor_for_body() {
-    //console.log("init_constructor_for_body", car_body);
+    // console.log("init_constructor_for_body", main_car.settings);
     var car_setting = main_car.settings;
     // Пройти по всем настройкам машинки и установить все категории
     var jq_category_list = $("#constructor-category-list");
@@ -414,6 +434,7 @@ function clickCategoryChoice(event, elem) {
 }
 
 function clickBodyColorChoice(event, elem) {
+    // console.log("clickBodyColorChoice");
     var old_state = $(elem).hasClass("activated");
     var item_key = $(elem).data("item_key");
     var category = $(elem).data("category");
@@ -435,6 +456,7 @@ function clickBodyColorChoice(event, elem) {
     if (car_category_name)
         main_car.redraw_current_category(car_category_name);
 }
+
 
 function init_color_for_item(category, item_key) {
     var jq_colors = $("#constructor-category-color");
@@ -521,9 +543,8 @@ function clickToBodyColor(event, elem) {
 
 function switchCar(next) {
     var ll = [];
-    var current_index = null;
     for (var key in all_cars) ll.push(key);
-    current_index = ll.indexOf(main_car.body_name);
+    var current_index = ll.indexOf(main_car.body_name);
     if (current_index < 0 || current_index >= ll.length) current_index = 0;
 
     if (next)
@@ -536,7 +557,7 @@ function switchCar(next) {
 
     main_car = new ConstructorCar(ll[current_index]);
     main_car.redraw($("#constructor-view"));
-    main_car.redraw_header();
+    main_car.redraw_interface();
 }
 
 
