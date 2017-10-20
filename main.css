@@ -94,6 +94,7 @@ all: initial;
     height: 470px;
     box-sizing: border-box;
     overflow: hidden;
+    user-select: none;
 }
 
 #constructor-view .elem {
