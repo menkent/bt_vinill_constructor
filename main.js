@@ -299,6 +299,13 @@ var ConstructorCar = (function () {
                         car_str = car_str + ";" + category + "=" + key + ":" + this[category + "_color"];  // "category=key_color" для категорий с цветом
         }
 
+        // Сохранение in_body_color_elems
+        var bcs = ";in_body_color_elems=";
+        for (var key in this.in_body_color_elems)
+            if (this.in_body_color_elems.hasOwnProperty(key))
+                bcs = bcs + this.in_body_color_elems[key][0] + ":" + this.in_body_color_elems[key][1] + ',';
+
+        car_str = car_str + bcs;
         return car_str;
     };
 
@@ -330,6 +337,17 @@ var ConstructorCar = (function () {
                 }
             }
         }
+        var in_body_color_arr = elems[elems.length - 1].split("=");
+        if (in_body_color_arr[0] === "in_body_color_elems" && in_body_color_arr[1]) {
+            var pairs_str = in_body_color_arr[1].split(",") || [];
+            pairs_str.map(function (curr) {
+                var m = curr.split(":");
+                if (m.length === 2 && car.settings.hasOwnProperty(m[0]) &&
+                    car.settings[m[0]].items.hasOwnProperty(m[1]) && car.settings[m[0]].items[m[1]].need_body_color)
+                    car.in_body_color_elems[m[1] + "_" + m[0]] = m;
+            })
+        }
+
         return car;
     };
 
