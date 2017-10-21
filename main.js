@@ -3,11 +3,11 @@ var main_car = null;
 
 $(document).ready(function () {
     var hash_url = window.location.hash;
-    init_body_cars();
+
     if (hash_url && hash_url.length) {
         hash_url = hash_url.split('#')[1];
         if (hash_url.length) {
-            var new_car = main_car.load(hash_url);
+            var new_car = ConstructorCar.prototype.load(hash_url);
             if (new_car) {
                 main_car = new_car;
                 main_car.redraw($("#constructor-view"));
@@ -18,6 +18,8 @@ $(document).ready(function () {
             }
         }
     }
+
+    if (!main_car) init_body_cars();
 
 
     // Инициализация кликов
@@ -384,14 +386,18 @@ var ConstructorCar = (function () {
 function init_body_cars() {
     var index = 0;
     var car_types = [];
-    for(var key in all_cars)
+    for (var key in all_cars)
         if (all_cars.hasOwnProperty(key))
             car_types.push(key);
 
-    main_car = new ConstructorCar(car_types[0]);
-    init_constructor_for_body();
-    main_car.redraw($("#constructor-view"));
-    main_car.redraw_interface();
+    carImagePreloader.preload_car(
+        car_types[0],
+        function () {
+            main_car = new ConstructorCar(car_types[0]);
+            main_car.redraw($("#constructor-view"));
+            main_car.redraw_interface();
+        });
+
 }
 
 // Отрисовка всех категорий-настроек машинки
