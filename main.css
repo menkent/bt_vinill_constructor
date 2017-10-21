@@ -348,4 +348,38 @@ all: initial;
     background: #EF0003;
 		border: 1px solid #EF0003;
 		color: #ffffff;
-}	
+}
+
+
+/* Preloader */
+
+#constructor-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(150, 150, 150, 0.7);
+    z-index: 100;
+}
+
+#constructor-preloader-content {
+    position: absolute;
+    width: 50%;
+    height: 100px;
+    top: calc(50% - 50px);
+    left: 25%;
+	/*background-color: rgba(255, 0, 0, 0.69);*/
+	text-align: center;
+}
+
+#constructor-preloader-car, #constructor-preloader-progress {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	color: #000;
+}
+
+#constructor-preloader-car {}
+#constructor-preloader-progress {}

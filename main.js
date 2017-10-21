@@ -12,8 +12,9 @@ $(document).ready(function () {
                 main_car = new_car;
                 main_car.redraw($("#constructor-view"));
                 main_car.redraw_interface();
-                
                 onHashChange();
+                
+                carImagePreloader.preload_car(main_car.body_name);
             }
         }
     }
@@ -575,6 +576,7 @@ function switchCar(next) {
     main_car = new ConstructorCar(ll[current_index]);
     main_car.redraw($("#constructor-view"));
     main_car.redraw_interface();
+    carImagePreloader.preload_car(main_car.body_name);
 
 }
 
