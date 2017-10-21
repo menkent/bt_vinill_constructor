@@ -489,7 +489,7 @@ var all_cars = {
                             "10721": {"html_color": "black", "img": "images/RS_A5FL/107_radiator/10721.png", "z": 7, "body_color": "black"},
                             "10731": {"html_color": "whitesmoke", "img": "images/RS_A5FL/107_radiator/10731.png", "z": 7, "body_color": "whitesmoke"},
                             "10741": {"html_color": "gray", "img": "images/RS_A5FL/107_radiator/10741.png", "z": 7, "body_color": "gray"},
-                            "10751": {"html_color": "green", "img": "images/RS_A5FL/107_radiator/120751.png", "z": 7, "body_color": "green"},
+                            "10751": {"html_color": "green", "img": "images/RS_A5FL/107_radiator/10751.png", "z": 7, "body_color": "green"},
                             "10761": {"html_color": "yellow", "img": "images/RS_A5FL/107_radiator/10761.png", "z": 7, "body_color": "yellow"},
                             "10771": {"html_color": "red", "img": "images/RS_A5FL/107_radiator/10771.png", "z": 7, "body_color": "red"},
                             "10781": {"html_color": "black", "img": "images/RS_A5FL/107_radiator/10781.png", "z": 7, "body_color": "black"},
