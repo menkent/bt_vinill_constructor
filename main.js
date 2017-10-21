@@ -573,10 +573,13 @@ function switchCar(next) {
         else
             current_index--;
 
-    main_car = new ConstructorCar(ll[current_index]);
-    main_car.redraw($("#constructor-view"));
-    main_car.redraw_interface();
-    carImagePreloader.preload_car(main_car.body_name);
+    carImagePreloader.preload_car(
+        ll[current_index],
+        function () {
+            main_car = new ConstructorCar(ll[current_index]);
+            main_car.redraw($("#constructor-view"));
+            main_car.redraw_interface();
+        });
 
 }
 

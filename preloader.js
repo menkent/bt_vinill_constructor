@@ -11,6 +11,8 @@ var CarImagePreloader = (function () {
 
         this.max_progress_count = 0;
         this.current_body_name = "";
+
+        this.callback = null;
     }
     
     CarImagePreloader.prototype.load_next = function () {
@@ -47,7 +49,7 @@ var CarImagePreloader = (function () {
         this.curr_loading++;
     };
 
-    CarImagePreloader.prototype.preload_car = function (car_name) {
+    CarImagePreloader.prototype.preload_car = function (car_name, callback) {
         this.queue = [];  // очищаем очередь загрузок
 
         function format_key() {
@@ -56,6 +58,7 @@ var CarImagePreloader = (function () {
 
         var car_setting = all_cars[car_name];
         this.current_body_name = car_name;
+        this.callback = typeof callback === "function" ? callback : null;
 
         // todo: реализовать обход любого объекта с возвратом списка заданных полей и их адресов
 
@@ -114,6 +117,8 @@ var CarImagePreloader = (function () {
 
         var jq_preloader = $("#constructor-preloader").first();
         jq_preloader.css("display", "none");
+        
+        if (this.callback) this.callback();
     };
 
 
