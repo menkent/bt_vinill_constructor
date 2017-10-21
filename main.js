@@ -24,6 +24,10 @@ $(document).ready(function () {
     $("#constructor-arrow-left").click(function(){switchCar(false);});
     $("#constructor-arrow-right").click(function(){switchCar(true);});
 
+    // Инициализация кликов
+    $("#constructor-category-arrow-left").click(function(){shiftCategory(false);});
+    $("#constructor-category-arrow-right").click(function(){shiftCategory(true);});
+
 });
 
 function object_fields_to_list(obj) {
@@ -408,6 +412,13 @@ function init_constructor_for_body() {
             jq_category_list.append("<div class='elem' data-car_category_name='" + key + "' onclick='clickCategoryChoice(event, this)'>" + category.name + "</div>");
         }
 
+    // Установка размера jq_category_list = суммер всех его дочерних элементов
+    var summ_width = 0;
+    jq_category_list.children().each(function (index, element) {
+        summ_width += $(element).outerWidth() + parseInt($(element).css('margin-right')) + parseInt($(element).css('margin-left'));
+    });
+    jq_category_list.width(summ_width);
+
     // Обновление body_color Делаем отдельно. Обработка кликов на них тоже
     var jq_body_colors = $("#constructor-body-color");
     jq_body_colors.empty();
@@ -583,6 +594,14 @@ function switchCar(next) {
 
 }
 
+
+function shiftCategory(to_rigth) {
+    var jq_cats = $("#constructor-category-list").first();
+    var current_left = jq_cats.position().left;
+    current_left = Math.min(0, current_left + (to_rigth ? -1 : 1) * 50);
+    current_left = Math.max(current_left, jq_cats.parent().outerWidth() - jq_cats.outerWidth());
+    jq_cats.css("left", current_left + "px");
+}
 
 window.addEventListener("hashchange", onHashChange, false);
 
