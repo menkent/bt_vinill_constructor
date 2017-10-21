@@ -12,6 +12,8 @@ $(document).ready(function () {
                 main_car = new_car;
                 main_car.redraw($("#constructor-view"));
                 main_car.redraw_interface();
+                
+                onHashChange();
             }
         }
     }
@@ -580,6 +582,8 @@ function switchCar(next) {
 window.addEventListener("hashchange", onHashChange, false);
 
 function onHashChange() {
-    console.log("new hash is ", window.location.hash);
-    console.log("new link is ", window.location.href);
+    // console.log("new hash is ", window.location.hash);
+    // console.log("new link is ", window.location.href);
+    var el = document.getElementById('url');
+    if (el) el.value = window.location.href;
 }
