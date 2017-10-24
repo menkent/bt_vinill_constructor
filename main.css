@@ -1,14 +1,14 @@
 body {background-color: ghostwhite; }
 
 .max-min-size {
-    max-width: 832px;
-    min-width: 792px;
+    max-width: 760px;
+    min-width: 750px;
 }
 #constructor {
 all: initial;
     position: relative;
     margin: auto;
-    box-sizing: border-box;
+	padding: 1.5em;
 }
 
 .elem {
@@ -18,7 +18,7 @@ all: initial;
 #constructor-ch-car-wrap {
     position: relative;
     margin: 0 auto;
-    width: 832px;
+    width: 760px;
     height: 30px;
 }
 
@@ -48,13 +48,15 @@ all: initial;
     width: 0;
     height: 0;
 }
-
+ 
 #constructor-arrow-right {
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
     border-left: 15px solid blue;
 	cursor: pointer;
 }
+
+
 
 #constructor-arrow-right:hover {
 	border-top: 15px solid transparent;
@@ -77,10 +79,11 @@ all: initial;
 		
 		}
 
+
 #constructor-center {
     position: relative;
     width: 100%;
-    height: 470px;
+    height: 390px;
     margin: 5px auto 0 auto;
     box-sizing: border-box;
     overflow: hidden;
@@ -90,8 +93,8 @@ all: initial;
 #constructor-view {
     position: relative;
     float: left;
-    width: 728px;
-    height: 470px;
+    width: 663px;
+    height: 390px;
     box-sizing: border-box;
     overflow: hidden;
     user-select: none;
@@ -108,16 +111,17 @@ all: initial;
 #constructor-body-color {
     position: relative;
     float: left;
-    width: calc(100% - 728px);
-    height: 470px;
+    width: calc(100% - 663px);
+    height: 390px;
+	padding: 5px 0 0 0;
 }
 
 
 #constructor-body-color .elem {
     position: relative;
-    width: 75px;
+	width: 75px;
     height: 37px;
-    margin: 5px auto 0 auto;
+    margin: 5px auto 5px auto;
     box-sizing: border-box;
     border: 1px solid #ffc8c3;
     border-radius: 4px;
@@ -267,7 +271,7 @@ all: initial;
     position: relative;
     margin: 2px auto 2px auto;
     box-sizing: border-box;
-    height: 37px;
+    /*height: 37px;*/
     border: solid 1px rgba(224, 224, 224, 0.75);
 	border-radius: 2px;
 }
@@ -353,11 +357,11 @@ all: initial;
 
 /*  media  */
 
-@media screen and (max-width: 980px) {
+/*@media screen and (max-width: 980px) {
 	.max-min-size {
 		min-width: 674px;
 	}
-
+	
 	#constructor-ch-car-wrap {
 		width: 707px;
 		height: 30px;
@@ -396,14 +400,14 @@ all: initial;
 	}
 
 }
-
-@media screen and (max-width: 840px) {
+*/
+@media screen and (max-width: 800px) {
 	.max-min-size {
-		min-width: 555px;
+		min-width: 730px;
 	}
 
 	#constructor-ch-car-wrap {
-		width: 583px;
+		width: 730px;
 	}
 	
 	
@@ -413,46 +417,94 @@ all: initial;
 	}
 	
 	#constructor-center {
-        width: 583px;
-		height: 329px;
+        width: 730px;
+		height: 390px;
 	}
 	
 	#constructor-view {
-		width: 510px;
-		height: 329px;
+		width: 663px;
+		height: 390px;
 	}
 	
 	#constructor-body-color {
-		width: calc(100% - 510px);
-		height: 329px;
+		width: calc(100% - 663px);
+		height: 390px;
 	}
 	
 	#constructor-body-color .elem {
-		width: 50px;
+		width: 45px;
 		height: 30px;
 	}
 	
 	#constructor-category-list {
-		width: 583px;
+		width: 730px;
 	}
 	
 	#constructor-category {
-		width: 583px;
+		width: 730px;
 	}
 	
 	#constructor-category-color {
-		width: 583px;
-		height: 74px;
+		width: 730px;
 	}
 }	
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 740px) {
 	.max-min-size {
-		min-width: 350px;
+		min-width: 600px;
 	}
 
 	#constructor-ch-car-wrap {
-		width: 370px;
+		width: 670px;
+	}
+	
+	
+	#constructor-ch-car {
+        width: calc(100% - 30px);
+		height: 30px;
+	}
+	
+	#constructor-center {
+        width: 670px;
+		height: 355px;
+	}
+	
+	#constructor-view {
+		width: 603px;
+		height: 355px;
+	}
+	
+	#constructor-body-color {
+		width: calc(100% - 663px);
+		height: 355px;
+	}
+	
+	#constructor-body-color .elem {
+		width: 45px;
+		height: 30px;
+	}
+	
+	#constructor-category-list {
+		width: 670px;
+	}
+	
+	#constructor-category {
+		width: 670px;
+	}
+	
+	#constructor-category-color {
+		width: 670px;
+	}
+}	
+
+
+@media screen and (max-width: 690px) {
+	.max-min-size {
+		min-width: 450px;
+	}
+	
+	#constructor-ch-car-wrap {
+		width: 478px;
 	}
 	
 	#constructor-ch-car {
@@ -466,46 +518,47 @@ all: initial;
 	}
 	
 	#constructor-center {
-        width: 370px;
-		height: 301px;
+        width: 478px;
+		height: 275px;
 	}
 	
 	#constructor-view {
-		width: 314px;
-		height: 203px;
+		width: 438px;
+		height: 257px;
 	}
 	
 	#constructor-body-color {
-		width: calc(100% - 314px);
-		height: 301px;
+		width: calc(100% - 438px);
+		height: 275px;
 	}
 	
 	#constructor-body-color .elem {
-		width: 50px;
+		width: 30px;
 		height: 30px;
+		margin: 2px auto 0 auto;
 	}
 	
 	#constructor-category-list {
-		width: 370px;
+		width: 478px;
 	}
 	
 	#constructor-category {
-		width: 370px;
+		width: 478px;
 	}
 	
 	#constructor-category-color {
-		width: 370px;
-		height: 74px;
+		width: 478px;
 	}
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 400px) {
 	.max-min-size {
-		min-width: 260px;
+		min-width: 270px;
 	}
-
+	
+	
 	#constructor-ch-car-wrap {
-		width: 270px;
+		width: 317px;
 	}
 	
 	#constructor-ch-car {
@@ -519,36 +572,37 @@ all: initial;
 	}
 	
 	#constructor-center {
-        width: 270px;
-		height: 301px;
+        width: 317px;
+		height: 190px;
 	}
 	
 	#constructor-view {
-		width: 214px;
-		height: 138px;
+		width: 272px;
+		height: 160px;
 	}
 	
 	#constructor-body-color {
-		width: calc(100% - 214px);
-		height: 370px;
+		width: calc(100% - 272px);
+		height: 190px;
 	}
 	
 	#constructor-body-color .elem {
-		width: 50px;
-		height: 30px;
+		width: 20px;
+		height: 20px;
+		margin: 1px auto 0 auto;
 	}
 	
 	#constructor-category-list {
-		width: 270px;
+		width: 317px;
 	}
 	
 	#constructor-category {
-		width: 270px;
+		width: 317px;
 	}
 	
 	#constructor-category-color {
-		width: 270px;
-		height: 111px;
+		width: 317px;
+		
 	}
 }
 
@@ -564,7 +618,7 @@ all: initial;
     height: 100%;
     /*background-color: rgba(150, 150, 150, 0.7);*/
     z-index: 100;
-	display: none;
+    display: none;
 }
 
 #constructor-preloader-content {
@@ -582,5 +636,5 @@ all: initial;
 	width: 100%;
 	height: 50px;
 	line-height: 50px;
-	color: #000;
+	color: #0000;
 }
