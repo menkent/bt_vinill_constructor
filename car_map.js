@@ -41,18 +41,8 @@ var all_cars = {
                     "red": {"html_color": "red", "name": "Красный", "color": "red"},
                 }
             },
-   
-            "shadow": {  // Категория тени под машинкой
-                "name": "Тень",
-                "stock": null, // Если сток не указан, значит по умолчанию не будет никакой картинки
-                "stock_name": "Без", // Имя кнопки - Сток в списке итемов, указывается только когда stock = null
-                "items": {
-                    "200": {"name": "Тип 1", "img": "images/RS_A5/200_shadow/200.png", "z": 1}  // z-index при отрисовке конкретной картинки
-                }
-            },
-			         
-			"toning": {  // Категория типа тонировки. Здесь нет картинок, так как цвет кузова_тонировка => картинка
-                "name": "Тонер",
+            "toning": {  // Категория типа тонировки. Здесь нет картинок, так как цвет кузова_тонировка => картинка
+                "name": "Ton",
                 "stock": "1",  // По-умолчанию нет тонировки
                 "items": {
                     "1": {"name": "Без", "type": 1},  // Отсутствие тонировки
@@ -60,21 +50,29 @@ var all_cars = {
                     "3": {"name": "Полная", "type": 3}
                 }
             },
-			
+
+            "shadow": {  // Категория тени под машинкой
+                "name": "Shadow",
+                "stock": null, // Если сток не указан, значит по умолчанию не будет никакой картинки
+                "stock_name": "Нет", // Имя кнопки - Сток в списке итемов, указывается только когда stock = null
+                "items": {
+                    "200": {"name": "Тень", "img": "images/RS_A5/200_shadow/200.png", "z": 1}  // z-index при отрисовке конкретной картинки
+                }
+            },
             "wheels": {  // Категория колёс
                 "with_color": true, // Значит есть третья строка выбора цвета (не в прямом смысле цвета колеса, а возможно варианта окраски)
-                "name": "Диски",
+                "name": "Wheels",
                 "stock": "20100",
                 "items": {
                     "20100": {
-                        "name": "Тип 1",
+                        "name": "wheel 1",
                         "def_color": "color1",  // Этот параметр говорит о типе (цвете) колеса по-умолчанию
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20100.png", "z": 2},
                         }
                     },
                     "20101": {
-                        "name": "Тип 2",
+                        "name": "wheel 2",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20101.png", "z": 2},
@@ -83,7 +81,7 @@ var all_cars = {
                         }
                     },
                     "20104": {
-                        "name": "Тип 3",
+                        "name": "wheel 3",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20104.png", "z": 2},
@@ -92,7 +90,7 @@ var all_cars = {
                         }
                     },
                     "20107": {
-                        "name": "Тип 4",
+                        "name": "wheel 4",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20107.png", "z": 2},
@@ -101,7 +99,7 @@ var all_cars = {
                         }
                     },
                     "20110": {
-                        "name": "Тип 5",
+                        "name": "wheel 5",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20110.png", "z": 2},
@@ -113,7 +111,7 @@ var all_cars = {
                         }
                     },
                     "20116": {
-                        "name": "Тип 6",
+                        "name": "wheel 6",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20116.png", "z": 2},
@@ -121,7 +119,7 @@ var all_cars = {
                         }
                     },
                     "20118": {
-                        "name": "Тип 7",
+                        "name": "wheel 7",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5/201_wheels/20118.png", "z": 2},
@@ -134,8 +132,8 @@ var all_cars = {
             "rapids": {
                 "with_color": true,
                 "stock": null,
-                "stock_name": "Без",
-                "name": "Пороги",
+                "stock_name": "Stock",
+                "name": "Skirts",
                 "items": {
                     "204": {
                         "name": "Тип 1",
@@ -155,13 +153,38 @@ var all_cars = {
                     },
                 },
             },
-         
+
+            "radiator": {
+                "name": "Frame",
+                "stock": null,
+                "stock_name": "Stock",
+                "with_color": true,
+                "items": {
+                    "ttt1": {
+                        "name": "Тип 1",
+                        "def_color": "color1",
+                        "need_body_color": true,
+                        "html_type": "palette",
+                        "colors": {
+                            "20701": {"html_color": "blue", "img": "images/RS_A5/207_radiator/20701.png", "z": 7, "body_color": "blue"},
+                            "20711": {"html_color": "white", "img": "images/RS_A5/207_radiator/20711.png", "z": 7, "body_color": "white"},
+                            "20721": {"html_color": "black", "img": "images/RS_A5/207_radiator/20721.png", "z": 7, "body_color": "black"},
+                            "20731": {"html_color": "whitesmoke", "img": "images/RS_A5/207_radiator/20731.png", "z": 7, "body_color": "whitesmoke"},
+                            "20741": {"html_color": "gray", "img": "images/RS_A5/207_radiator/20741.png", "z": 7, "body_color": "gray"},
+                            "20751": {"html_color": "green", "img": "images/RS_A5/207_radiator/20751.png", "z": 7, "body_color": "green"},
+                            "20761": {"html_color": "yellow", "img": "images/RS_A5/207_radiator/20761.png", "z": 7, "body_color": "yellow"},
+                            "20771": {"html_color": "red", "img": "images/RS_A5/207_radiator/20771.png", "z": 7, "body_color": "red"},
+                            "20781": {"html_color": "black", "img": "images/RS_A5/207_radiator/20781.png", "z": 7, "body_color": "black"},
+                        },
+                    }
+                }
+            },
 
             "splitter": {
                 "with_color": true,
                 "stock": null,
-                "stock_name": "Без",
-                "name": "Сплиттер",
+                "stock_name": "Stock",
+                "name": "Spoilers",
                 "items": {
                     "type_1": {
                         "name": "Тип 1",
@@ -198,61 +221,10 @@ var all_cars = {
                 },
             },
 
-			 "radiator": {
-                "name": "Рамка",
-                "stock": null,
-                "stock_name": "Сток",
-                "with_color": true,
-                "items": {
-                    "ttt1": {
-                        "name": "Тип 1",
-                        "def_color": "color1",
-                        "need_body_color": true,
-                        "html_type": "palette",
-                        "colors": {
-                            "20701": {"html_color": "blue", "img": "images/RS_A5/207_radiator/20701.png", "z": 7, "body_color": "blue"},
-                            "20711": {"html_color": "white", "img": "images/RS_A5/207_radiator/20711.png", "z": 7, "body_color": "white"},
-                            "20721": {"html_color": "black", "img": "images/RS_A5/207_radiator/20721.png", "z": 7, "body_color": "black"},
-                            "20731": {"html_color": "whitesmoke", "img": "images/RS_A5/207_radiator/20731.png", "z": 7, "body_color": "whitesmoke"},
-                            "20741": {"html_color": "gray", "img": "images/RS_A5/207_radiator/20741.png", "z": 7, "body_color": "gray"},
-                            "20751": {"html_color": "green", "img": "images/RS_A5/207_radiator/20751.png", "z": 7, "body_color": "green"},
-                            "20761": {"html_color": "yellow", "img": "images/RS_A5/207_radiator/20761.png", "z": 7, "body_color": "yellow"},
-                            "20771": {"html_color": "red", "img": "images/RS_A5/207_radiator/20771.png", "z": 7, "body_color": "red"},
-                            "20781": {"html_color": "black", "img": "images/RS_A5/207_radiator/20781.png", "z": 7, "body_color": "black"},
-                        },
-                    }
-                }
-            },
-			
-			"eyelashes": {
-                "name": "Ресницы",
-                "stock": null,
-                "stock_name": "Без",
-                "with_color": true,
-                "items": {
-                    "ttt1": {
-                        "name": "Тип 1",
-                        "def_color": "color1",
-                        "need_body_color": true,
-                        "html_type": "palette",
-                        "colors": {
-                            "21101": {"html_color": "blue", "img": "images/RS_A5/211_eyelashes/21101.png", "z": 11, "body_color": "blue"},
-                            "21111": {"html_color": "white", "img": "images/RS_A5/211_eyelashes/21111.png", "z": 11, "body_color": "white"},
-                            "21121": {"html_color": "black", "img": "images/RS_A5/211_eyelashes/21121.png", "z": 11, "body_color": "black"},
-                            "21131": {"html_color": "whitesmoke", "img": "images/RS_A5/211_eyelashes/21131.png", "z": 11, "body_color": "whitesmoke"},
-                            "21141": {"html_color": "gray", "img": "images/RS_A5/211_eyelashes/21141.png", "z": 11, "body_color": "gray"},
-                            "21151": {"html_color": "green", "img": "images/RS_A5/211_eyelashes/21151.png", "z": 11, "body_color": "green"},
-                            "21161": {"html_color": "yellow", "img": "images/RS_A5/211_eyelashes/21161.png", "z": 11, "body_color": "yellow"},
-                            "21171": {"html_color": "red", "img": "images/RS_A5/211_eyelashes/21171.png", "z": 11, "body_color": "red"},
-                        },
-                    }
-                }
-            }
-			
             "back_mirrors": {  // Категория зеркал заднего вида
-                "name": "Зеркала",
+                "name": "Mirrors",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
                     "20621": {"name": "Тип 1", "img": "images/RS_A5/206_back_mirrors/20621.png", "z": 6},
                     "20622": {"name": "Тип 2", "img": "images/RS_A5/206_back_mirrors/20622.png", "z": 6}
@@ -260,18 +232,18 @@ var all_cars = {
             },
 
             "strut": {  // Категория стоек
-                "name": "Стойка",
+                "name": "Rack",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
-                    "20821": {"name": "Тип 1", "img": "images/RS_A5/208_strut/20821.png", "z": 8},
+                    "20821": {"name": "Черная", "img": "images/RS_A5/208_strut/20821.png", "z": 8},
                 }
             },
 
             "visor": {
-                "name": "Козырек",
+                "name": "Shield",
                 "stock": null,
-                "stock_name": "Без",
+                "stock_name": "Stock",
                 "with_color": true,
                 "items": {
                     "ttt1": {
@@ -294,14 +266,37 @@ var all_cars = {
             },
 
             "roof": {
-                "name": "Крыша",
+                "name": "Roof",
                 "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "items": {
-                    "21021": {"name": "Тип 1", "img": "images/RS_A5/210_roof/21021.png", "z": 10},
+                    "21021": {"name": "Black", "img": "images/RS_A5/210_roof/21021.png", "z": 10},
                 }
             },
-
+            "eyelashes": {
+                "name": "Eyebrows",
+                "stock": null,
+                "stock_name": "Stock",
+                "with_color": true,
+                "items": {
+                    "ttt1": {
+                        "name": "Тип 1",
+                        "def_color": "color1",
+                        "need_body_color": true,
+                        "html_type": "palette",
+                        "colors": {
+                            "21101": {"html_color": "blue", "img": "images/RS_A5/211_eyelashes/21101.png", "z": 11, "body_color": "blue"},
+                            "21111": {"html_color": "white", "img": "images/RS_A5/211_eyelashes/21111.png", "z": 11, "body_color": "white"},
+                            "21121": {"html_color": "black", "img": "images/RS_A5/211_eyelashes/21121.png", "z": 11, "body_color": "black"},
+                            "21131": {"html_color": "whitesmoke", "img": "images/RS_A5/211_eyelashes/21131.png", "z": 11, "body_color": "whitesmoke"},
+                            "21141": {"html_color": "gray", "img": "images/RS_A5/211_eyelashes/21141.png", "z": 11, "body_color": "gray"},
+                            "21151": {"html_color": "green", "img": "images/RS_A5/211_eyelashes/21151.png", "z": 11, "body_color": "green"},
+                            "21161": {"html_color": "yellow", "img": "images/RS_A5/211_eyelashes/21161.png", "z": 11, "body_color": "yellow"},
+                            "21171": {"html_color": "red", "img": "images/RS_A5/211_eyelashes/21171.png", "z": 11, "body_color": "red"},
+                        },
+                    }
+                }
+            }
         },
     },
 
@@ -348,17 +343,7 @@ var all_cars = {
                     "red": {"html_color": "red", "name": "Красный", "color": "red"},
                 }
             },
-           
-			"shadow": {  // Категория тени под машинкой
-                "name": "Тень",
-                "stock": null, // Если сток не указан, значит по умолчанию не будет никакой картинки
-                "stock_name": "Без",
-                "items": {
-                    "100": {"name": "Тип 1", "img": "images/RS_A5FL/100_shadow/1001.png", "z": 1}  // z-index при отрисовке конкретной картинки
-                }
-            },
-		   
-		   "toning": {  // Категория типа тонировки. Здесь нет картинок, так как цвет кузова_тонировка => картинка
+            "toning": {  // Категория типа тонировки. Здесь нет картинок, так как цвет кузова_тонировка => картинка
                 "name": "Тонер",
                 "stock": "1",  // По-умолчанию нет тонировки
                 "items": {
@@ -368,13 +353,21 @@ var all_cars = {
                 }
             },
 
+            "shadow": {  // Категория тени под машинкой
+                "name": "Тень",
+                "stock": null, // Если сток не указан, значит по умолчанию не будет никакой картинки
+                "stock_name": "Нет",
+                "items": {
+                    "100": {"name": "Тень", "img": "images/RS_A5FL/100_shadow/1001.png", "z": 1}  // z-index при отрисовке конкретной картинки
+                }
+            },
             "wheels": {  // Категория колёс
                 "with_color": true, // Значит есть третья строка выбора цвета (не в прямом смысле цвета колеса, а возможно варианта окраски)
-                "name": "Диски",
+                "name": "Колёса",
                 "stock": "10100",
                 "items": {
                     "10100": {
-                        "name": "Тип 1",
+                        "name": "wheel 1",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5FL/101_wheels/10100.png", "z": 2},
@@ -383,14 +376,14 @@ var all_cars = {
                         }
                     },
 					"10103": {
-                        "name": "Тип 2",
+                        "name": "wheel 2",
                         "def_color": "color1",  // Этот параметр говорит о типе (цвете) колеса по-умолчанию
                         "colors": {
                             "color1": {"img": "images/RS_A5FL/101_wheels/10103.png", "z": 2},
                         }
                     },
                     "10104": {
-                        "name": "Тип 3",
+                        "name": "wheel 3",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5FL/101_wheels/10104.png", "z": 2},
@@ -399,7 +392,7 @@ var all_cars = {
                         }
                     },
                     "10107": {
-                        "name": "Тип 4",
+                        "name": "wheel 4",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5FL/101_wheels/10107.png", "z": 2},
@@ -408,7 +401,7 @@ var all_cars = {
                         }
                     },
                     "10110": {
-                        "name": "Тип 5",
+                        "name": "wheel 5",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5FL/101_wheels/10110.png", "z": 2},
@@ -420,7 +413,7 @@ var all_cars = {
                         }
                     },
                     "10116": {
-                        "name": "Тип 6",
+                        "name": "wheel 6",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5FL/101_wheels/10116.png", "z": 2},
@@ -428,7 +421,7 @@ var all_cars = {
                         }
                     },
                     "10118": {
-                        "name": "Тип 7",
+                        "name": "wheel 7",
                         "def_color": "color1",
                         "colors": {
                             "color1": {"img": "images/RS_A5FL/101_wheels/10118.png", "z": 2},
@@ -441,7 +434,7 @@ var all_cars = {
             "rapids": {
                 "with_color": true,
                 "stock": null,
-                "stock_name": "Без",
+                "stock_name": "Stock",
                 "name": "Пороги",
                 "items": {
                     "type_11": {
@@ -479,35 +472,10 @@ var all_cars = {
 				}
             },
 
-			"splitter": {
-                "with_color": true,
+            "radiator": {
+                "name": "Радиатор",
                 "stock": null,
-                "stock_name": "Без",
-                "name": "Сплиттер",
-                "items": {
-                    "type_1_1": {
-                        "name": "Тип 1",
-                        "def_color": "color1",
-                        "need_body_color": true,
-                        "html_type": "palette",
-                        "colors": {
-                            "color1": {"html_color": "blue", "img": "images/RS_A5FL/103_splitter/10301.png", "z": 4, "body_color": "blue"},
-                            "color2": {"html_color": "white", "img": "images/RS_A5FL/103_splitter/10311.png", "z": 4, "body_color": "white"},
-                            "color3": {"html_color": "black", "img": "images/RS_A5FL/103_splitter/10321.png", "z": 4, "body_color": "black"},
-                            "color4": {"html_color": "whitesmoke", "img": "images/RS_A5FL/103_splitter/10331.png", "z": 4, "body_color": "whitesmoke"},
-                            "color5": {"html_color": "gray", "img": "images/RS_A5FL/103_splitter/10341.png", "z": 4, "body_color": "gray"},
-                            "color6": {"html_color": "green", "img": "images/RS_A5FL/103_splitter/10351.png", "z": 4, "body_color": "green"},
-                            "color7": {"html_color": "yellow", "img": "images/RS_A5FL/103_splitter/10361.png", "z": 4, "body_color": "yellow"},
-                            "color8": {"html_color": "red", "img": "images/RS_A5FL/103_splitter/10371.png", "z": 4, "body_color": "red"},
-                        }
-                    },
-                }
-            },
-
-			"radiator": {
-                "name": "Рамка",
-                "stock": null,
-                "stock_name": "Сток",
+                "stock_name": "Stock",
                 "with_color": true,
                 "items": {
                     "ttt1t": {
@@ -529,11 +497,72 @@ var all_cars = {
                     },
                 }
             },
-			
-			"eyelashes": {
-                "name": "Ресницы",
+
+            "splitter": {
+                "with_color": true,
                 "stock": null,
-                "stock_name": "Без",
+                "stock_name": "Stock",
+                "name": "Сплиттер",
+                "items": {
+                    "type_1_1": {
+                        "name": "Тип 1",
+                        "def_color": "color1",
+                        "need_body_color": true,
+                        "html_type": "palette",
+                        "colors": {
+                            "color1": {"html_color": "blue", "img": "images/RS_A5FL/103_splitter/10301.png", "z": 4, "body_color": "blue"},
+                            "color2": {"html_color": "white", "img": "images/RS_A5FL/103_splitter/10311.png", "z": 4, "body_color": "white"},
+                            "color3": {"html_color": "black", "img": "images/RS_A5FL/103_splitter/10321.png", "z": 4, "body_color": "black"},
+                            "color4": {"html_color": "whitesmoke", "img": "images/RS_A5FL/103_splitter/10331.png", "z": 4, "body_color": "whitesmoke"},
+                            "color5": {"html_color": "gray", "img": "images/RS_A5FL/103_splitter/10341.png", "z": 4, "body_color": "gray"},
+                            "color6": {"html_color": "green", "img": "images/RS_A5FL/103_splitter/10351.png", "z": 4, "body_color": "green"},
+                            "color7": {"html_color": "yellow", "img": "images/RS_A5FL/103_splitter/10361.png", "z": 4, "body_color": "yellow"},
+                            "color8": {"html_color": "red", "img": "images/RS_A5FL/103_splitter/10371.png", "z": 4, "body_color": "red"},
+                        }
+                    },
+                }
+            },
+
+            "back_mirrors": {  // Категория зеркал заднего вида
+                "name": "Зеркала",
+                "stock": null,
+                "stock_name": "Stock",
+                "items": {
+                    "10621": {"name": "Зеркало1", "img": "images/RS_A5FL/106_back_mirrors/10621.png", "z": 6},
+                    "10622": {"name": "Зеркало2", "img": "images/RS_A5FL/106_back_mirrors/10622.png", "z": 6}
+                }
+            },
+
+            "strut": {  // Категория стоек
+                "name": "Стойка",
+                "stock": null,
+                "stock_name": "Stock",
+                "items": {
+                    "10821": {"name": "Черная", "img": "images/RS_A5FL/108_strut/10821.png", "z": 8},
+                }
+            },
+
+            "logo": {
+                "name": "Logo",
+                "stock": null,
+                "stock_name": "Stock",
+                "items": {
+                      "10901": {"name": "Новое", "img": "images/RS_A5FL/109_visor/10901.png", "z": 9},
+                }
+            },
+
+            "roof": {
+                "name": "Крыша",
+                "stock": null,
+                "stock_name": "Stock",
+                "items": {
+                    "11021": {"name": "Крыша", "img": "images/RS_A5FL/110_roof/11021.png", "z": 10},
+                }
+            },
+            "eyelashes": {
+                "name": "Реснички",
+                "stock": null,
+                "stock_name": "Stock",
                 "with_color": true,
                 "items": {
                     "ttt_1": {
@@ -570,45 +599,6 @@ var all_cars = {
                     },
 				}
             }
-			
-			"logo": {
-                "name": "Logo",
-                "stock": null,
-                "stock_name": "Сток",
-                "items": {
-                      "10901": {"name": "Тип 1", "img": "images/RS_A5FL/109_visor/10901.png", "z": 9},
-                }
-            },
-			
-            "back_mirrors": {  // Категория зеркал заднего вида
-                "name": "Зеркала",
-                "stock": null,
-                "stock_name": "Сток",
-                "items": {
-                    "10621": {"name": "Тип 1", "img": "images/RS_A5FL/106_back_mirrors/10621.png", "z": 6},
-                    "10622": {"name": "Тип 2", "img": "images/RS_A5FL/106_back_mirrors/10622.png", "z": 6}
-                }
-            },
-
-            "strut": {  // Категория стоек
-                "name": "Стойка",
-                "stock": null,
-                "stock_name": "Сток",
-                "items": {
-                    "10821": {"name": "Тип 1", "img": "images/RS_A5FL/108_strut/10821.png", "z": 8},
-                }
-            },
-
-
-            "roof": {
-                "name": "Крыша",
-                "stock": null,
-                "stock_name": "Сток",
-                "items": {
-                    "11021": {"name": "Тип 1", "img": "images/RS_A5FL/110_roof/11021.png", "z": 10},
-                }
-            },
-       
         },
     },
 }
