@@ -1,4 +1,4 @@
-	body {background-color: ghostwhite; }
+body {background-color: ghostwhite; }
 
 .max-min-size {
     max-width: 760px;
@@ -504,22 +504,25 @@ all: initial;
 	
 	#constructor-center {
         width: 670px;
-		height: 400px;
+		height: auto;
 	}
 	
 	#constructor-view {
-		width: 603px;
-		height: 355px;
+		width: 663px;
+		height: 390px;
 	}
 	
 	#constructor-body-color {
-		width: calc(100% - 663px);
-		height: 400px;
+		width: 670px;
+		height: auto;
+		
 	}
 	
 	#constructor-body-color .elem {
+		float: left;
 		width: 45px;
 		height: 30px;
+		margin: 2px 3px;
 	}
 	
 	#constructor-category-list {
@@ -557,23 +560,25 @@ all: initial;
 	
 	#constructor-center {
         width: 478px;
-		height: 400px;
+		height: auto;
 	}
 	
 	#constructor-view {
-		width: 438px;
-		height: 257px;
+		width: 471px;
+		height: 277px;
 	}
 	
 	#constructor-body-color {
-		width: calc(100% - 438px);
-		height: 400px;
+		width: 478px;
+		height: auto;
+	
 	}
 	
 	#constructor-body-color .elem {
-		width: 30px;
+		float: left; 
+		width: 45px;
 		height: 30px;
-		margin: 2px auto 0 auto;
+		margin: 2px 2px;
 	}
 	
 	#constructor-category-list {
@@ -597,6 +602,7 @@ all: initial;
 	
 	#constructor-ch-car-wrap {
 		width: 317px;
+		height: auto;
 	}
 	
 	#constructor-ch-car {
@@ -611,10 +617,10 @@ all: initial;
 	
 	#constructor-center {
         width: 317px;
-		height: 260px;
+		height: auto;
 	}
 	
-	#constructor-view {
+	/*#constructor-view {
 		width: 272px;
 		height: 160px;
 	}
@@ -623,11 +629,24 @@ all: initial;
 		width: calc(100% - 272px);
 		height: 260px;
 	}
+	*/
+	#constructor-view {
+		width: 312px;
+		height: 183px;
+	}
+	
+	#constructor-body-color {
+		width: 317px;
+		height: auto;
+		
+		
+	}
 	
 	#constructor-body-color .elem {
-		width: 20px;
+		float: left; 
+		width: 40px;
 		height: 20px;
-		margin: 1px auto 0 auto;
+		margin: 2px 2px;
 	}
 	
 	#constructor-category-list {
