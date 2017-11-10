@@ -436,6 +436,10 @@ function init_constructor_for_body() {
 // Обработка клика (выбора) категории и отрисовка вариантов выбора в конкретной категории
 function clickCategoryChoice(event, elem) {
     if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
+
+    // Google Analytics
+    try {gtag('send', 'event', 'change', 'click', 'category');} catch(e){console.warn('GA not defined');}
+
     //console.log("clickCategoryChoice", event, elem);
     var car_category = $(elem).data("car_category_name");
 
@@ -465,6 +469,9 @@ function clickCategoryChoice(event, elem) {
 
 function clickBodyColorChoice(event, elem) {
     if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
+    // Google Analytics
+    try {gtag('send', 'event', 'change', 'click', 'body_color');} catch(e){console.warn('GA not defined');}
+
     // console.log("clickBodyColorChoice", event, elem);
     var old_state = $(elem).hasClass("activated");
     var item_key = $(elem).data("item_key");
@@ -593,6 +600,8 @@ function switchCar(next) {
             main_car.redraw_interface();
         });
 
+    // Google Analytics
+    try {gtag('send', 'event', 'change', 'click', 'car');} catch(e){console.warn('GA not defined');}
 }
 
 
