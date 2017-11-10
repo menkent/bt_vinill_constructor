@@ -435,6 +435,7 @@ function init_constructor_for_body() {
 
 // Обработка клика (выбора) категории и отрисовка вариантов выбора в конкретной категории
 function clickCategoryChoice(event, elem) {
+    if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
     //console.log("clickCategoryChoice", event, elem);
     var car_category = $(elem).data("car_category_name");
 
@@ -463,6 +464,7 @@ function clickCategoryChoice(event, elem) {
 }
 
 function clickBodyColorChoice(event, elem) {
+    if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
     // console.log("clickBodyColorChoice", event, elem);
     var old_state = $(elem).hasClass("activated");
     var item_key = $(elem).data("item_key");
@@ -513,6 +515,7 @@ function init_color_for_item(category, item_key) {
 
 // Обработка клика по итему их текущей-выбранной категории
 function clickItemChoice(event, elem) {
+    if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
     //console.log("clickItemChoice", event, elem);
     var old_state = $(elem).hasClass("activated");
     var item_key = $(elem).data("item_key");
@@ -529,6 +532,7 @@ function clickItemChoice(event, elem) {
 
 // Обработка клика по кнопке, возвращающей текущую категорию в стоковое состояние
 function clickItemStockChoice(event, elem) {
+    if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
     //console.log("clickItemStockChoice", event, elem);
     if ($(elem).hasClass("activated")) return;
     var category = $(elem).data("category");
@@ -542,6 +546,7 @@ function clickItemStockChoice(event, elem) {
 
 
 function clickColorItemChoice(event, elem) {
+    if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
     var old_state = $(elem).hasClass("activated");
     var item_key = $(elem).data("item_key");
     var category = $(elem).data("category");
@@ -557,6 +562,7 @@ function clickColorItemChoice(event, elem) {
 
 
 function clickToBodyColor(event, elem) {
+    if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
     // console.log("clickToBodyColor", event, elem);
     var item_key = $(elem).data("item_key");
     var category = $(elem).data("category");
