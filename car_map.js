@@ -1,5 +1,6 @@
 var all_cars = {
     "Octavia RS Mk2": {  // Это все-все настройки одной машинки
+        watermark: "images/RS_A5/212_watermark/watermark2.png",
         toning_body_map: { // Здесь идут связки цвета кузова и тонировки! важно совпадение ключей через подчёркивание
             "blue_1": {"img": "images/RS_A5/202_body_tonir/20201.png", "z": 3}, // z - z-index при отрисовке конкретной картинки
             "blue_2": {"img": "images/RS_A5/202_body_tonir/20202.png", "z": 3},
@@ -308,6 +309,7 @@ var all_cars = {
 
 
     "Octavia RS Mk2 FL": {
+        watermark: "images/RS_A5FL/112_watermark/watermark.png",
         toning_body_map: {
             "blue_1": {"img": "images/RS_A5FL/102_body_tonir/10201.png", "z": 3}, // z - z-index при отрисовке конкретной картинки
             "blue_2": {"img": "images/RS_A5FL/102_body_tonir/10202.png", "z": 3},
@@ -615,6 +617,7 @@ var all_cars = {
         },
     },
 	"Octavia RS Mk3": {
+        watermark: "images/RS_A7/312_whatermark/whatermark3.png",
         toning_body_map: {
             "black_1": {"img": "images/RS_A7/302_body_tonir/302001.png", "z": 3}, // z - z-index при отрисовке конкретной картинки
             "black_2": {"img": "images/RS_A7/302_body_tonir/302002.png", "z": 3},

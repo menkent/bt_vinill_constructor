@@ -197,7 +197,12 @@ var ConstructorCar = (function () {
                 }
             }
         }
-
+        // Добавление watermark
+        var watermark = all_cars[main_car.body_name] && all_cars[main_car.body_name].watermark || "";
+        if(watermark)
+            jq_elem.append("<img src=" + watermark + " alt='' data-category='" + category + "' class='elem' style='z-index: 1000'>");
+        else
+            console.warn("Not found watermark for ", main_car.body_name);
         window.location.hash = this.save(); // Обновление ссылки на данную машинку
     };
 
