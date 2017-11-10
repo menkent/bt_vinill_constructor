@@ -62,6 +62,10 @@ var CarImagePreloader = (function () {
 
         // todo: реализовать обход любого объекта с возвратом списка заданных полей и их адресов
 
+        // добавление watermark
+        if (car_setting.watermark)
+            this.queue.push({key: format_key(car_name, "watermark"), link: car_setting.watermark});
+
         // добавление toning_body_map
         for (var key in car_setting.toning_body_map)
             if (car_setting.toning_body_map.hasOwnProperty(key) && car_setting.toning_body_map[key].img)
