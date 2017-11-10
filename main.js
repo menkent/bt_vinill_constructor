@@ -458,18 +458,12 @@ function clickCategoryChoice(event, elem) {
 }
 
 function clickBodyColorChoice(event, elem) {
-    // console.log("clickBodyColorChoice");
+    // console.log("clickBodyColorChoice", event, elem);
     var old_state = $(elem).hasClass("activated");
     var item_key = $(elem).data("item_key");
     var category = $(elem).data("category");
-
-    if (!old_state) {
-        main_car.set_item({category: category, item_key: item_key, action: true, need_redraw: true});
-    }
-    else {
-        main_car.set_item({category: category, item_key: item_key, action: false, need_redraw: true});
-    }
-
+    main_car.set_item({category: category, item_key: item_key, action: true, need_redraw: true});
+    
     // Показать какой из цветов выбран
     var jq_body_colors = $("#constructor-body-color");
     jq_body_colors.find('.elem').removeClass("activated");
@@ -558,6 +552,7 @@ function clickColorItemChoice(event, elem) {
 
 
 function clickToBodyColor(event, elem) {
+    // console.log("clickToBodyColor", event, elem);
     var item_key = $(elem).data("item_key");
     var category = $(elem).data("category");
     // Нужно взять текущий body_color и кликнуть на него в списке досупных
