@@ -438,7 +438,7 @@ function clickCategoryChoice(event, elem) {
     if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
 
     // Google Analytics
-    try {gtag('send', 'event', 'change', 'click', 'category');} catch(e){console.warn('GA not defined');}
+    try {gtag('event', 'change', {event_category: 'click', event_label: 'category'});} catch(e){console.warn('GA not defined');}
 
     //console.log("clickCategoryChoice", event, elem);
     var car_category = $(elem).data("car_category_name");
@@ -470,7 +470,7 @@ function clickCategoryChoice(event, elem) {
 function clickBodyColorChoice(event, elem) {
     if (carImagePreloader.interface_block) {console.log("Interface blocked before loading image not finish."); return;}
     // Google Analytics
-    try {gtag('send', 'event', 'change', 'click', 'body_color');} catch(e){console.warn('GA not defined');}
+    try {gtag('event', 'change', {event_category: 'click', event_label: 'body_color'});} catch(e){console.warn('GA not defined');}
 
     // console.log("clickBodyColorChoice", event, elem);
     var old_state = $(elem).hasClass("activated");
@@ -601,7 +601,7 @@ function switchCar(next) {
         });
 
     // Google Analytics
-    try {gtag('send', 'event', 'change', 'click', 'car');} catch(e){console.warn('GA not defined');}
+    try {gtag('event', 'change', {event_category: 'click', event_label: 'car'});} catch(e){console.warn('GA not defined');}
 }
 
 

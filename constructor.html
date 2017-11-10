@@ -16,9 +16,8 @@
         gtag('js', new Date());
         gtag('config', 'UA-109468983-1');
 
-        gtag('send', 'pageview');
         // Чтобы не считались отказы для одностраничного сайта
-        setTimeout("gtag('send','event','Engaged users','More than 10 seconds')", 10000);
+        setTimeout(function () {gtag('config', 'UA-109468983-1', {'page_title': 'homepage'});}, 10000);
     </script>
 
 </head>
