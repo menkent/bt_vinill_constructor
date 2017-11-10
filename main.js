@@ -364,7 +364,7 @@ var ConstructorCar = (function () {
     ConstructorCar.prototype.redraw_header = function () {
         var jq_car_types = $("#constructor-ch-car");
         jq_car_types.empty();
-        jq_car_types.text(this.body_name);
+        jq_car_types.text(all_cars[this.body_name].title || this.body_name);
     };
 
     ConstructorCar.prototype.redraw_current_car_color = function (aColor) {
